@@ -759,7 +759,7 @@ ul.breadcrumbs li + li::before {
 .header-area .logo-bar {
     position: relative;
     color: #323232;
-    padding: 40px 0;
+    padding: 20px 0;
 }
 .header-area .logo-bar .information-content {
     position: relative;
