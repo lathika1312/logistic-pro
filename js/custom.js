@@ -39,7 +39,7 @@ Designed and Development by: ScriptsBundle
         $('.transparent-header a.navbar-brand img').attr('src', 'images/logo.png');
     } else {
         $('.transparent-header .navbar-default').removeClass('opaque');
-         $('.transparent-header a.navbar-brand img').attr('src', 'images/logo-1.png');
+         $('.transparent-header a.navbar-brand img').attr('src', 'images/logo2.jpg');
     }
 });
 

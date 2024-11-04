@@ -4333,3 +4333,254 @@ li.nav-profile .hidden-xs {
     background-color: #fff;
 }
 }
+
+#rate{
+    padding: 30px;
+}
+
+.main-wrapper{
+    display: flex;
+    gap:20px;
+    width: 100%;
+}
+.way-wrapper{
+    display: flex;
+    gap: 20px;
+}
+
+.rate-wrapper{
+    width:40%;
+}
+.truck-rate{
+    width:60%;
+}
+.round{
+    background-color: red;
+    width: 20px !important;
+    height: 20px !important;
+}
+.destination-wrap{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.from-btn{
+    width: 300px;
+    box-shadow: 0 1px 3px rgba(0,0,0,.3);
+    border: 1px solid #efefef;
+    text-align: left;
+}
+
+.truck-heading{
+    color: #144366;
+    font-size: 20px;
+    line-height: 20px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+.way-heading{
+    color: #000;
+    font-size: 14px;
+    font-weight: 500;
+    margin: 5px;
+}
+
+
+.destination-button {
+    color: #144366;
+    padding:3px 10px;
+    border: none;
+    border-radius: 5px;
+    margin: 5px;
+    cursor: pointer;
+    border: 1px solid #144366;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+/* Optional: add hover effect */
+.destination-button:hover {
+    background-color: #dde2e6; /* Darker color on hover */
+}
+
+
+.card-wrapper{
+    border:1px solid #e2e8f0;
+    max-width: 500px;
+    padding: 5px;
+    margin: 5px 0px;
+    border-radius:8px;
+}
+
+.tab-wrapper{
+    display: flex;
+    gap: 10px;
+    margin:10px 0px;
+}
+
+.tab{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid   #144366;
+    width: 100px;
+    text-align: center;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.container-heading{
+    color: #144366;
+    font-size: 14px;
+
+}
+.container-sub-heading{
+    color: #144366;
+    font-size: 12px;
+
+}
+
+.freight-container {
+    /* margin: 20px auto; */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+}
+
+/* Header styling */
+.freight-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: #f9f9f9;
+    font-size: 16px;
+    font-weight: bold;
+}
+.freight-header span {
+    font-weight: normal;
+    color: #333;
+}
+
+/* Table styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+/* Row styling */
+.location-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.location-info .dot {
+    height: 8px;
+    width: 8px;
+    border-radius: 50%;
+    display: inline-block;
+}
+.location-info .dot.green {
+    background-color: green;
+}
+.location-info .dot.red {
+    background-color: red;
+}
+.details {
+    color: #666;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+/* Price and button */
+.price {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+.book-button {
+    background-color: #144366;
+    color: #fff;
+    border: none;
+    border-radius:20px;
+    font-size: 12px;
+    cursor: pointer;
+    text-align: center;
+    padding: 1px 10px;
+}
+.book-button:hover {
+    background-color: #153A7C;
+}
+
+.location-heading{
+    font-size: 16px;
+    color: #000;
+}
+
+
+.sidebar {
+    display: none; /* Hide the sidebar by default */
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 100vh;
+    background-color: white;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    z-index: 1000;
+    overflow-y: scroll;
+}
+
+.sidebar.show {
+    display: block; /* Show the sidebar when the class 'show' is added */
+}
+
+.district-item{
+    color: #000;
+    border-bottom: 1px solid #efefef;
+    padding: 10px 0px;
+    cursor: pointer;
+    font-weight: 600;
+    &:hover{
+        background-color: #efefef;
+    }
+}
+
+
+.destination-button.active {
+    background-color: #144366;
+    color: #fff;
+}
+
+.destination-wrap {
+    margin-bottom: 15px;
+}
+
+
+@media (max-width: 600px) {
+    .freight-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    table, th, td {
+        font-size: 12px;
+        padding: 8px;
+    }
+    .book-button {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+}

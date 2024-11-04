@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 
@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="ScriptsBundle">
-    <title>RuRu-Login</title>
+    <title>RuRu- Truck Booking</title>
     <!-- =-=-=-=-=-=-= Favicons Icon =-=-=-=-=-=-= -->
     <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
     <!-- =-=-=-=-=-=-= Mobile Specific =-=-=-=-=-=-= -->
@@ -104,7 +104,7 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="main-navigation">
                         <ul class="nav navbar-nav">
-                            <li class="dropdown active">
+                            <li class="dropdown">
                                 <a href="index.html" data-animations="fadeInUp">Home</a></li>
                                     <li><a href="about.html">About Company </a> </li>
                                     <li><a href="services.html">Services </a> </li>
@@ -121,63 +121,156 @@
     </header>
     <!-- =-=-=-=-=-=-= HEADER END =-=-=-=-=-=-= -->
 
-
-    <!-- =-=-=-=-=-=-= PAGE BREADCRUMB =-=-=-=-=-=-= -->
-    <section class="breadcrumbs-area parallex">
+    <section>
         <div class="container">
-            <div class="row">
-                <div class="page-title">
-                    <div class="col-sm-12 col-md-6 page-heading text-left">
-                        <h3>prove your identity</h3>
-                        <h2>Login Your Account</h2>
-                    </div>
+            <div id="rate">
+               <div class="main-wrapper">
+                <div class="rate-wrapper">
+                    <h1 class="truck-heading">Truck Freight Calculator</h1>
+                    <div id="card-container"></div> <!-- Container to hold all card wrappers -->
                 </div>
+                <div class="truck-rate">
+                    <h1 class="truck-heading">Transport Truck Rates</h1>
+                    <div class="way-wrapper">
+                        <div>
+                            <div class="destination-wrap">
+                                <label>From</label>
+                                <button class="from-btn" id="from-btn"> <span class="round"></span> Chennai</button>
+                            </div>
+                        </div>
+                        <div class="destination-wrap">
+                            <label>To</label>
+                            <button class="from-btn"  id="to-btn"> <span class="round"></span> Chennai</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Sidebar for From District Details -->
+               <!-- Sidebar for From District Details -->
+<div id="from-sidebar" class="sidebar">
+    <h3>Select From District</h3>
+    <ul id="from-district-list">
+        <li class="district-item" data-value="Ariyalur">Ariyalur</li>
+        <li class="district-item" data-value="Chennai">Chennai</li>
+        <li class="district-item" data-value="Coimbatore">Coimbatore</li>
+        <li class="district-item" data-value="Cuddalore">Cuddalore</li>
+        <li class="district-item" data-value="Dharmapuri">Dharmapuri</li>
+        <li class="district-item" data-value="Dindigul">Dindigul</li>
+        <li class="district-item" data-value="Erode">Erode</li>
+        <li class="district-item" data-value="Kanchipuram">Kanchipuram</li>
+        <li class="district-item" data-value="Kanyakumari">Kanyakumari</li>
+        <li class="district-item" data-value="Karur">Karur</li>
+        <li class="district-item" data-value="Krishnagiri">Krishnagiri</li>
+        <li class="district-item" data-value="Madurai">Madurai</li>
+        <li class="district-item" data-value="Nagapattinam">Nagapattinam</li>
+        <li class="district-item" data-value="Namakkal">Namakkal</li>
+        <li class="district-item" data-value="Nilgiris">Nilgiris</li>
+        <li class="district-item" data-value="Perambalur">Perambalur</li>
+        <li class="district-item" data-value="Pudukkottai">Pudukkottai</li>
+        <li class="district-item" data-value="Ramanathapuram">Ramanathapuram</li>
+        <li class="district-item" data-value="Ranipet">Ranipet</li>
+        <li class="district-item" data-value="Salem">Salem</li>
+        <li class="district-item" data-value="Sivaganga">Sivaganga</li>
+        <li class="district-item" data-value="Thanjavur">Thanjavur</li>
+        <li class="district-item" data-value="Theni">Theni</li>
+        <li class="district-item" data-value="Tiruchirappalli">Tiruchirappalli</li>
+        <li class="district-item" data-value="Tirunelveli">Tirunelveli</li>
+        <li class="district-item" data-value="Tiruppur">Tiruppur</li>
+        <li class="district-item" data-value="Tiruvallur">Tiruvallur</li>
+        <li class="district-item" data-value="Tiruvannamalai">Tiruvannamalai</li>
+        <li class="district-item" data-value="Vellore">Vellore</li>
+        <li class="district-item" data-value="Villupuram">Villupuram</li>
+        <li class="district-item" data-value="Virudhunagar">Virudhunagar</li>
+    </ul>
+    <button id="close-from-sidebar">Close</button>
+</div>
+
+<!-- Sidebar for To District Details -->
+<div id="to-sidebar" class="sidebar">
+    <h3>Select To District</h3>
+    <ul id="to-district-list">
+        <li class="district-item" data-value="Ariyalur">Ariyalur</li>
+        <li class="district-item" data-value="Chennai">Chennai</li>
+        <li class="district-item" data-value="Coimbatore">Coimbatore</li>
+        <li class="district-item" data-value="Cuddalore">Cuddalore</li>
+        <li class="district-item" data-value="Dharmapuri">Dharmapuri</li>
+        <li class="district-item" data-value="Dindigul">Dindigul</li>
+        <li class="district-item" data-value="Erode">Erode</li>
+        <li class="district-item" data-value="Kanchipuram">Kanchipuram</li>
+        <li class="district-item" data-value="Kanyakumari">Kanyakumari</li>
+        <li class="district-item" data-value="Karur">Karur</li>
+        <li class="district-item" data-value="Krishnagiri">Krishnagiri</li>
+        <li class="district-item" data-value="Madurai">Madurai</li>
+        <li class="district-item" data-value="Nagapattinam">Nagapattinam</li>
+        <li class="district-item" data-value="Namakkal">Namakkal</li>
+        <li class="district-item" data-value="Nilgiris">Nilgiris</li>
+        <li class="district-item" data-value="Perambalur">Perambalur</li>
+        <li class="district-item" data-value="Pudukkottai">Pudukkottai</li>
+        <li class="district-item" data-value="Ramanathapuram">Ramanathapuram</li>
+        <li class="district-item" data-value="Ranipet">Ranipet</li>
+        <li class="district-item" data-value="Salem">Salem</li>
+        <li class="district-item" data-value="Sivaganga">Sivaganga</li>
+        <li class="district-item" data-value="Thanjavur">Thanjavur</li>
+        <li class="district-item" data-value="Theni">Theni</li>
+        <li class="district-item" data-value="Tiruchirappalli">Tiruchirappalli</li>
+        <li class="district-item" data-value="Tirunelveli">Tirunelveli</li>
+        <li class="district-item" data-value="Tiruppur">Tiruppur</li>
+        <li class="district-item" data-value="Tiruvallur">Tiruvallur</li>
+        <li class="district-item" data-value="Tiruvannamalai">Tiruvannamalai</li>
+        <li class="district-item" data-value="Vellore">Vellore</li>
+        <li class="district-item" data-value="Villupuram">Villupuram</li>
+        <li class="district-item" data-value="Virudhunagar">Virudhunagar</li>
+    </ul>
+    <button id="close-to-sidebar">Close</button>
+</div>
+                    <div class="tab-wrapper">
+                        <div class="tab">
+                            <div class="container-heading">32FT MXL</div>
+                            <div class="container-sub-heading">Container</div>
+                        </div>
+                        <div class="tab">
+                            <div class="container-heading">32FT SXL</div>
+                            <div class="container-sub-heading">Container</div>
+                        </div>
+                        <div class="tab">
+                            <div class="container-heading">20-24 FT</div>
+                            <div class="container-sub-heading">Container</div>
+                        </div>
+                        <div class="tab">
+                            <div class="container-heading">17-24 FT</div>
+                            <div class="container-sub-heading">Open</div>
+                        </div>
+                        <div class="tab">
+                            <div class="container-heading">10 Whl</div>
+                            <div class="container-sub-heading">Open</div>
+                        </div>
+                        <div class="tab">
+                            <div class="container-heading">12 Whl</div>
+                            <div class="container-sub-heading">Open</div>
+                        </div>
+                        <div class="tab">
+                            <div class="container-heading">14 Whl</div>
+                            <div class="container-sub-heading">Open</div>
+                        </div>
+                    </div>
+                    <table id="freightTable">
+                        <!-- The table header goes here -->
+                        <thead>
+                            <tr>
+                                <th>Ton: 6</th>
+                                <th></th>
+                                <th>Price</th>
+                                <th>Average:₹59100 </th>
+                            </tr>
+                        </thead>
+                       
+                        <!-- Table body will be appended here -->
+                    </table>
+                    
+                </div>
+               </div>
             </div>
         </div>
     </section>
-    <!-- =-=-=-=-=-=-= PAGE BREADCRUMB END =-=-=-=-=-=-= -->
-
-
-    <!-- =-=-=-=-=-=-= Sign In Section =-=-=-=-=-=-= -->
-
-    <section class="section-padding-70">
-        <div class="container">
-        <div class="row">
-				<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-					<form class="registration">
-						<div class="box-header">
-							<h2>Login to your account</h2>
-						</div>
-
-						<label>User Name</label>
-						<input type="text" class="form-control margin-bottom-20">
-						
-						<label>Password <span class="color-red">*</span></label>
-						<input type="password" class="form-control margin-bottom-20">
-
-						<div class="row">
-							<div class="col-md-8 col-sm-8 col-xs-12">
-                            <div class="checkbox checkbox-default">
-                                <input type="checkbox" id="checkbox2" checked="">
-                                <label for="checkbox2">
-                                    Stay signed in
-                                </label>
-                            </div>
-							</div>
-							<div class="col-md-4 row col-sm-4 col-xs-12 text-right">
-								<button type="submit" class="btn btn-primary btn-sm">Login</button>
-							</div>
-						</div>
-                        <hr>
-                        <h4>Forget your Password ?</h4>
-                        <p>no worries, <a href="#" class="color-green">click here</a> to reset your password.</p>
-					</form>
-				</div>
-			</div>
-        </div>
-    </section>
-
-    <!-- =-=-=-=-=-=-= Section End =-=-=-=-=-=-= -->
 
     <!-- =-=-=-=-=-=-= FOOTER =-=-=-=-=-=-= -->
     <footer class="footer-area">
@@ -278,14 +371,15 @@
         </div>
         
     </footer>
-	
-	<!-- =-=-=-=-=-=-= Quote Modal =-=-=-=-=-=-= -->
-	<div data-target="#request-quote" data-toggle="modal" class="quote-button hidden-xs">
-		  <a class="btn btn-primary" href="javascript:void(0)"><i class="fa fa-envelope"></i></a>
-	</div>
-	<!-- =-=-=-=-=-=-= Quote Modal End =-=-=-=-=-=-= -->
+
+<!-- =-=-=-=-=-=-= Quote Modal =-=-=-=-=-=-= -->
+<div data-target="#request-quote" data-toggle="modal" class="quote-button hidden-xs">
+      <a class="btn btn-primary" href="javascript:void(0)"><i class="fa fa-envelope"></i></a>
+</div>
+<!-- =-=-=-=-=-=-= Quote Modal End =-=-=-=-=-=-= -->
 
     <!-- =-=-=-=-=-=-= JQUERY =-=-=-=-=-=-= -->
+     <script src="js/rete.js"></script>
     <script src="js/jquery.min.js"></script>
     <!-- Bootstrap Core Css  -->
     <script src="js/bootstrap.min.js"></script>
@@ -310,8 +404,51 @@
     <script src="js/magnific-popup/jquery.magnific-popup.min.js"></script>
     <!-- Sticky Bar  -->
     <script src="js/theia-sticky-sidebar.js"></script>
+
     <!-- Template Core JS -->
     <script src="js/custom.js"></script>
+    
+    <!-- For This Page Only  -->
+    <script src="js/select2.min.js"></script>
+    <script src="js/moment.js"></script>
+    <script src="js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+                /* ======= Jquery Select Options ======= */
+               $(".country").select2({
+                  placeholder: "Select Departure Location",
+                  allowClear: true
+                });
+                
+                $(".delivery").select2({
+                  placeholder: "Select Delivery  Location",
+                  allowClear: true
+                });
+                
+                 $(".weight").select2({
+                  placeholder: "Select Weight Unit",
+                  allowClear: true
+                });
+                
+                $(".packaging").select2({
+                  placeholder: "Select Packaging Unit",
+                  allowClear: true
+                });
+                
+                $(".cargo-type").select2({
+                  placeholder: "Select Cargo Type",
+                  allowClear: true
+                });
+                
+                $(".insurance").select2({
+                  placeholder: "Select Insurance Required?",
+                  allowClear: true
+                });
+            /* ======= Date Time Picker ======= */
+            $('#datetimepicker1').datetimepicker();
+        });
+      </script>
+    
  <!-- =-=-=-=-=-=-= Quote Modal =-=-=-=-=-=-= --> 
     <div class="modal fade " id="request-quote" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -575,5 +712,5 @@
 </body>
 
 
-<!-- Mirrored from templates.scriptsbundle.com/logistic-pro/demo/logistic-pro/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 29 Oct 2024 08:18:41 GMT -->
+<!-- Mirrored from templates.scriptsbundle.com/logistic-pro/demo/logistic-pro/online-booking.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 29 Oct 2024 08:19:08 GMT -->
 </html>
