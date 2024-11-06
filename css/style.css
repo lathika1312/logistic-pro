@@ -1474,6 +1474,7 @@ ul.breadcrumbs li + li::before {
 .more-about .btn {
     font-size: 12px;
     padding: 10px 20px;
+    margin-bottom: 50px
 }
 .more-about a i {
     margin-left: 5px;
@@ -4590,4 +4591,27 @@ th {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.service-route{
+    font-family: 'Merriweather', serif !important;
+    font-weight: normal;
+    color: #000;
+    margin: 5px 0px;
+
+}
+
+
+.our-services{
+    text-align: center;
+}
+.our-services h1{
+    font-size: 28px;
+    margin: 40px 0px;
+    color: #000;
+}
+
+.about-title .online-heading{
+    font-size: 19px;
+    font-weight:500;
 }
