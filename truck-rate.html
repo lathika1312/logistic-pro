@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="ScriptsBundle">
-    <title>RuRu-About Company</title>
+    <title>RuRu-Truck Rate</title>
     <!-- =-=-=-=-=-=-= Favicons Icon =-=-=-=-=-=-= -->
     <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
     <!-- =-=-=-=-=-=-= Mobile Specific =-=-=-=-=-=-= -->
@@ -110,11 +110,11 @@
                         <ul class="nav navbar-nav">
                             <li class="dropdown ">
                                 <a href="index.html" data-animations="fadeInUp">Home</a></li>
-                                    <li class="active"><a href="about.html">About Company </a> </li>
+                                    <li><a href="about.html">About Company </a> </li>
                                     <li ><a href="services.html">Services </a> </li>
                                     <li><a href="contact.html">Contact Us </a> </li>
                         </ul>
-                        <a  href="rate.html"  class="btn btn-primary pull-right">Truck Rate</a> </div>
+                        <a  href="truck-rate.html"  class="btn btn-primary pull-right">Truck Rate</a> </div>
                     <!-- /.navbar-collapse -->
 
                 </div>
@@ -125,8 +125,372 @@
         <!-- Menu  End -->
     </header>
     <!-- =-=-=-=-=-=-= HEADER END =-=-=-=-=-=-= -->
+<section>
+<!-- home.component.html -->
+<div class="banner-container">
+    <img src="images/footer-bg.jpg" alt="Truck Banner" class="banner-image" />
+  
+    <div class="banner-content">
+      <div class="text-section">
+        <h3>Transport World Wide</h3>
+        <h1>Get Your Goods Moving with <br>Simple Online Truck Booking</h1>
+      </div>
+  
+      <div class="booking-form">
+        <h2>Book Truck</h2>
+        <form>
+          <div class="form-group">
+            <select id="pickup" (change)="onPickupChange($event)" required>
+              <option value="" disabled selected>Select Pick Up City Location</option>
+              <option *ngFor="let district of districts" [value]="district">{{ district }}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <select id="drop" (change)="onDropChange($event)" required>
+              <option value="" disabled selected>Select Drop City Location</option>
+              <option *ngFor="let district of districts" [value]="district">{{ district }}</option>
+            </select>
+          </div>
+          <button type="button" (click)="checkFare()">Check Fare</button>
+        </form>
+      </div>
+    </div>
+  </div>
 
 
+    <style>
+
+.banner-container {
+    position: relative;
+    width: 100%;
+    height: 450px;
+    overflow: hidden;
+    display: flex; /* Use flexbox for layout */
+    align-items: center; /* Center vertically */
+  }
+  
+  .banner-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.7);
+  }
+  
+  .banner-content {
+    position: absolute;
+    display: flex; /* Flexbox for horizontal layout */
+    width: 100%; /* Full width */
+    padding: 20px; /* Padding for spacing */
+    color: white;
+    margin-left: 50px;
+    margin-top: 50px;
+  }
+  
+  .text-section {
+    flex: 1; /* Takes up space on the left */
+    text-align: left; /* Align text to the left */
+  }
+  
+  .booking-form {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 1.5rem;
+    border-radius: 10px;
+    width: 350px;
+    margin-right: 200px;
+  
+  }
+  
+  .banner-content h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .booking-form h2 {
+    font-size: 1.7rem;
+    color: #333;
+    margin-top: 5px;
+    text-align: center;
+    
+  }
+  
+  .form-group {
+    margin-bottom: 1rem;
+    margin-right: 1px;
+  }
+  
+  .form-group input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+  
+  button {
+    width: 100%;
+    padding: 0.7rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #0056b3;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #004099;
+  }
+  
+  @media (max-width: 768px) {
+    .banner-content {
+      flex-direction: column; /* Stack on smaller screens */
+      align-items: center; /* Center content */
+      padding: 10px; /* Reduce padding */
+    }
+  
+    .text-section {
+      text-align: center; /* Center text on small screens */
+      margin-bottom: 20px; /* Space between sections */
+    }
+  
+    .booking-form {
+      max-width: 90%; /* Allow more width on smaller screens */
+      padding: 1rem; /* Reduce padding */
+    }
+  
+    .banner-content h1 {
+      font-size: 2rem; /* Smaller heading size */
+    }
+  
+    .booking-form h2 {
+      font-size: 1.2rem; /* Smaller form heading */
+    }
+  }
+  
+  .form-group select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    appearance: none; /* Remove default arrow */
+  }
+  
+  .form-group select:focus {
+    border-color: #0056b3; /* Change border color on focus */
+    outline: none; /* Remove default outline */
+  }
+  
+
+
+/*about*/
+  .about-container {
+    display: flex;
+    align-items: center;
+    padding: 40px;
+    background-color: #f9f9f9;
+  }
+  
+  .about-image img {
+    width: 400%;
+    max-width: 400px;
+    border-radius: 8px;
+  }
+  
+  .about-content {
+    margin-left: 300px;
+    margin-right: 100px;
+  }
+  
+  .about-content h2 {
+    font-size: 2rem;
+    color: #333;
+  }
+  
+  .about-content h2 span {
+    color: #ff9500; /* Highlight color */
+  }
+  
+  .about-content p {
+    font-size: 1rem;
+    color: #555;
+    margin: 10px 0;
+  }
+  
+  .features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 20px;
+  }
+  
+  .feature-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 200px;
+  }
+  
+  .feature-item img {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px;
+  }
+  
+  .feature-item h4 {
+    font-size: 1.2rem;
+    color: #333;
+    margin: 10px 0 5px;
+  }
+  
+  .feature-item p {
+    font-size: 0.9rem;
+    color: #777;
+  }
+
+
+
+  /*services*/
+
+  .trusted-section {
+    text-align: center;
+    padding: 50px 20px;
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+  
+  .trusted-section h2 {
+    font-size: 2rem;
+    color: #003366;
+    margin-bottom: 10px;
+  }
+  
+  .trusted-section p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 40px;
+  }
+  
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    margin-left: 110px;
+    margin-right: 110px;
+  }
+  
+  .feature-item {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .feature-item img {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 15px;
+  }
+  
+  .feature-item h4 {
+    font-size: 1.2rem;
+    color: #003366;
+    margin-bottom: 10px;
+  }
+  
+  .feature-item p {
+    font-size: 0.9rem;
+    color: #666;
+  }
+  
+
+  /*works*/
+
+  .how-it-works {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+  }
+  
+  .how-it-works h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .steps {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+  
+  .step {
+    text-align: center;
+    max-width: 200px;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+  
+  .step img {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px;
+  }
+  
+  .step p {
+    font-size: 14px;
+    color: #333;
+    line-height: 1.5;
+  }
+  
+  .step strong {
+    font-size: 16px;
+    color: #000;
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    .steps {
+      flex-direction: column;
+      gap: 20px;
+    }
+  
+    .how-it-works h2 {
+      font-size: 20px;
+    }
+  
+    .step {
+      max-width: 100%;
+    }
+  
+    .step img {
+      width: 40px;
+      height: 40px;
+    }
+  
+    .step p {
+      font-size: 13px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .how-it-works h2 {
+      font-size: 18px;
+    }
+  
+    .step img {
+      width: 30px;
+      height: 30px;
+    }
+  
+    .step p {
+      font-size: 12px;
+    }
+  }
+
+    </style>
+
+</section>
 
     <!-- =-=-=-=-=-=-= FOOTER =-=-=-=-=-=-= -->
     <footer class="footer-area">
