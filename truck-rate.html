@@ -125,372 +125,373 @@
         <!-- Menu  End -->
     </header>
     <!-- =-=-=-=-=-=-= HEADER END =-=-=-=-=-=-= -->
+
+
 <section>
-<!-- home.component.html -->
-<div class="banner-container">
+  <!-- home.component.html -->
+  <div class="banner-container">
     <img src="images/footer-bg.jpg" alt="Truck Banner" class="banner-image" />
-  
+
     <div class="banner-content">
       <div class="text-section">
         <h3>Transport World Wide</h3>
         <h1>Get Your Goods Moving with <br>Simple Online Truck Booking</h1>
       </div>
-  
+
       <div class="booking-form">
         <h2>Book Truck</h2>
-        <form>
+        <form id="truckBookingForm">
           <div class="form-group">
-            <select id="pickup" (change)="onPickupChange($event)" required>
+            <select id="pickup" required>
               <option value="" disabled selected>Select Pick Up City Location</option>
-              <option *ngFor="let district of districts" [value]="district">{{ district }}</option>
+              <option value="Ariyalur">Ariyalur</option>
+              <option value="Chengalpattu">Chengalpattu</option>
+              <option value="Chennai">Chennai</option>
+              <option value="Coimbatore">Coimbatore</option>
+              <option value="Cuddalore">Cuddalore</option>
+              <option value="Dharmapuri">Dharmapuri</option>
+              <option value="Dindigul">Dindigul</option>
+              <option value="Erode">Erode</option>
+              <option value="Kancheepuram">Kancheepuram</option>
+              <option value="Kanyakumari">Kanyakumari</option>
+              <option value="Karur">Karur</option>
+              <option value="Krishnagiri">Krishnagiri</option>
+              <option value="Madurai">Madurai</option>
+              <option value="Nagapattinam">Nagapattinam</option>
+              <option value="Namakkal">Namakkal</option>
+              <option value="Perambalur">Perambalur</option>
+              <option value="Pudukkottai">Pudukkottai</option>
+              <option value="Ramanathapuram">Ramanathapuram</option>
+              <option value="Salem">Salem</option>
+              <option value="Sivaganga">Sivaganga</option>
+              <option value="Tiruchirappalli">Tiruchirappalli</option>
+              <option value="Tirunelveli">Tirunelveli</option>
+              <option value="Tiruppur">Tiruppur</option>
+              <option value="Vellore">Vellore</option>
+              <option value="Viluppuram">Viluppuram</option>
+              <option value="Thanjavur">Thanjavur</option>
+              <option value="Thoothukudi">Thoothukudi</option>
+              <option value="Tiruvannamalai">Tiruvannamalai</option>
+              <option value="Chidambaram">Chidambaram</option>
+              <option value="Vaniyambadi">Vaniyambadi</option>
+              <option value="Ambur">Ambur</option>
+              <option value="Kumbakonam">Kumbakonam</option>
+              <option value="Rishivandiyam">Rishivandiyam</option>
+              <option value="Nellai">Nellai</option>
+              <option value="Vedaranyam">Vedaranyam</option>
+              <option value="Alangudi">Alangudi</option>
+              <option value="Azhagappapuram">Azhagappapuram</option>
+              <option value="Tenkasi">Tenkasi</option>
             </select>
+            
           </div>
           <div class="form-group">
-            <select id="drop" (change)="onDropChange($event)" required>
+            <select id="drop" required>
               <option value="" disabled selected>Select Drop City Location</option>
-              <option *ngFor="let district of districts" [value]="district">{{ district }}</option>
-            </select>
+              <option value="Ariyalur">Ariyalur</option>
+              <option value="Chengalpattu">Chengalpattu</option>
+              <option value="Chennai">Chennai</option>
+              <option value="Coimbatore">Coimbatore</option>
+              <option value="Cuddalore">Cuddalore</option>
+              <option value="Dharmapuri">Dharmapuri</option>
+              <option value="Dindigul">Dindigul</option>
+              <option value="Erode">Erode</option>
+              <option value="Kancheepuram">Kancheepuram</option>
+              <option value="Kanyakumari">Kanyakumari</option>
+              <option value="Karur">Karur</option>
+              <option value="Krishnagiri">Krishnagiri</option>
+              <option value="Madurai">Madurai</option>
+              <option value="Nagapattinam">Nagapattinam</option>
+              <option value="Namakkal">Namakkal</option>
+              <option value="Perambalur">Perambalur</option>
+              <option value="Pudukkottai">Pudukkottai</option>
+              <option value="Ramanathapuram">Ramanathapuram</option>
+              <option value="Salem">Salem</option>
+              <option value="Sivaganga">Sivaganga</option>
+              <option value="Tiruchirappalli">Tiruchirappalli</option>
+              <option value="Tirunelveli">Tirunelveli</option>
+              <option value="Tiruppur">Tiruppur</option>
+              <option value="Vellore">Vellore</option>
+              <option value="Viluppuram">Viluppuram</option>
+              <option value="Thanjavur">Thanjavur</option>
+              <option value="Thoothukudi">Thoothukudi</option>
+              <option value="Tiruvannamalai">Tiruvannamalai</option>
+              <option value="Chidambaram">Chidambaram</option>
+              <option value="Vaniyambadi">Vaniyambadi</option>
+              <option value="Ambur">Ambur</option>
+              <option value="Kumbakonam">Kumbakonam</option>
+              <option value="Rishivandiyam">Rishivandiyam</option>
+              <option value="Nellai">Nellai</option>
+              <option value="Vedaranyam">Vedaranyam</option>
+              <option value="Alangudi">Alangudi</option>
+              <option value="Azhagappapuram">Azhagappapuram</option>
+              <option value="Tenkasi">Tenkasi</option>
+            </select>            
           </div>
-          <button type="button" (click)="checkFare()">Check Fare</button>
+          <button type="button" onclick="checkFare()">Check Fare</button>
         </form>
       </div>
     </div>
   </div>
 
-
     <style>
 
+/* Banner Section */
 .banner-container {
-    position: relative;
-    width: 100%;
-    height: 450px;
-    overflow: hidden;
-    display: flex; /* Use flexbox for layout */
-    align-items: center; /* Center vertically */
-  }
-  
-  .banner-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: brightness(0.7);
-  }
-  
+  position: relative;
+  width: 100%;
+  height: 450px;
+  overflow: hidden;
+  display: flex; /* Use flexbox for layout */
+  align-items: center; /* Center vertically */
+}
+
+.banner-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.7); /* Darken image to make text more readable */
+}
+
+.banner-content {
+  position: absolute;
+  display: flex; /* Flexbox for horizontal layout */
+  width: 100%; /* Full width */
+  padding: 20px; /* Padding for spacing */
+  color: white;
+  margin-left: 50px;
+  margin-top: 50px;
+}
+
+.text-section {
+  flex: 1; /* Takes up space on the left */
+  text-align: left; /* Align text to the left */
+}
+
+.text-section h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.text-section h1 {
+  font-size: 2.5rem;
+  line-height: 1.3;
+  font-weight: bold;
+}
+
+.booking-form {
+  background: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
+  padding: 1.5rem;
+  border-radius: 10px;
+  width: 350px;
+  margin-right: 50px; /* Space between form and image */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Shadow for better visibility */
+  margin-right: 200px;
+  margin-bottom: 70px;
+}
+
+.booking-form h2 {
+  font-size: 2.5rem;
+  color: #000;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+  color: #000;
+}
+
+.form-group select {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #000;
+  border-radius: 5px;
+  font-size: 1.5rem;
+  background-color: #f8f8f8;
+  appearance: none; /* Remove default arrow */
+}
+
+.form-group select:focus {
+  border-color: #0056b3; /* Change border color on focus */
+  outline: none; /* Remove default outline */
+}
+
+button {
+  width: 100%;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #0056b3;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #004099; /* Darker shade on hover */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
   .banner-content {
-    position: absolute;
-    display: flex; /* Flexbox for horizontal layout */
-    width: 100%; /* Full width */
-    padding: 20px; /* Padding for spacing */
-    color: white;
-    margin-left: 50px;
-    margin-top: 50px;
+    flex-direction: column; /* Stack content on smaller screens */
+    align-items: center; /* Center content */
+    margin-left: 0;
+    margin-top: 30px;
   }
-  
+
   .text-section {
-    flex: 1; /* Takes up space on the left */
-    text-align: left; /* Align text to the left */
-  }
-  
-  .booking-form {
-    background: rgba(255, 255, 255, 0.9);
-    padding: 1.5rem;
-    border-radius: 10px;
-    width: 350px;
-    margin-right: 200px;
-  
-  }
-  
-  .banner-content h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-  }
-  
-  .booking-form h2 {
-    font-size: 1.7rem;
-    color: #333;
-    margin-top: 5px;
     text-align: center;
-    
-  }
-  
-  .form-group {
-    margin-bottom: 1rem;
-    margin-right: 1px;
-  }
-  
-  .form-group input {
-    width: 100%;
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1rem;
-  }
-  
-  button {
-    width: 100%;
-    padding: 0.7rem;
-    border: none;
-    border-radius: 5px;
-    background-color: #0056b3;
-    color: white;
-    font-size: 1rem;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #004099;
-  }
-  
-  @media (max-width: 768px) {
-    .banner-content {
-      flex-direction: column; /* Stack on smaller screens */
-      align-items: center; /* Center content */
-      padding: 10px; /* Reduce padding */
-    }
-  
-    .text-section {
-      text-align: center; /* Center text on small screens */
-      margin-bottom: 20px; /* Space between sections */
-    }
-  
-    .booking-form {
-      max-width: 90%; /* Allow more width on smaller screens */
-      padding: 1rem; /* Reduce padding */
-    }
-  
-    .banner-content h1 {
-      font-size: 2rem; /* Smaller heading size */
-    }
-  
-    .booking-form h2 {
-      font-size: 1.2rem; /* Smaller form heading */
-    }
-  }
-  
-  .form-group select {
-    width: 100%;
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1rem;
-    appearance: none; /* Remove default arrow */
-  }
-  
-  .form-group select:focus {
-    border-color: #0056b3; /* Change border color on focus */
-    outline: none; /* Remove default outline */
-  }
-  
-
-
-/*about*/
-  .about-container {
-    display: flex;
-    align-items: center;
-    padding: 40px;
-    background-color: #f9f9f9;
-  }
-  
-  .about-image img {
-    width: 400%;
-    max-width: 400px;
-    border-radius: 8px;
-  }
-  
-  .about-content {
-    margin-left: 300px;
-    margin-right: 100px;
-  }
-  
-  .about-content h2 {
-    font-size: 2rem;
-    color: #333;
-  }
-  
-  .about-content h2 span {
-    color: #ff9500; /* Highlight color */
-  }
-  
-  .about-content p {
-    font-size: 1rem;
-    color: #555;
-    margin: 10px 0;
-  }
-  
-  .features {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    margin-top: 20px;
-  }
-  
-  .feature-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    max-width: 200px;
-  }
-  
-  .feature-item img {
-    width: 50px;
-    height: 50px;
-    margin-bottom: 10px;
-  }
-  
-  .feature-item h4 {
-    font-size: 1.2rem;
-    color: #333;
-    margin: 10px 0 5px;
-  }
-  
-  .feature-item p {
-    font-size: 0.9rem;
-    color: #777;
-  }
-
-
-
-  /*services*/
-
-  .trusted-section {
-    text-align: center;
-    padding: 50px 20px;
-    margin-left: 50px;
-    margin-right: 50px;
-  }
-  
-  .trusted-section h2 {
-    font-size: 2rem;
-    color: #003366;
-    margin-bottom: 10px;
-  }
-  
-  .trusted-section p {
-    font-size: 1rem;
-    color: #555;
-    margin-bottom: 40px;
-  }
-  
-  .features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 30px;
-    margin-left: 110px;
-    margin-right: 110px;
-  }
-  
-  .feature-item {
-    text-align: center;
-    padding: 20px;
-  }
-  
-  .feature-item img {
-    width: 50px;
-    height: 50px;
-    margin-bottom: 15px;
-  }
-  
-  .feature-item h4 {
-    font-size: 1.2rem;
-    color: #003366;
-    margin-bottom: 10px;
-  }
-  
-  .feature-item p {
-    font-size: 0.9rem;
-    color: #666;
-  }
-  
-
-  /*works*/
-
-  .how-it-works {
-    text-align: center;
-    font-family: Arial, sans-serif;
-    padding: 20px;
-  }
-  
-  .how-it-works h2 {
-    font-size: 24px;
     margin-bottom: 20px;
   }
-  
-  .steps {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 40px;
-    flex-wrap: wrap;
+
+  .booking-form {
+    width: 90%; /* Make form take more width on smaller screens */
+    margin-right: 0;
+    padding: 1rem;
   }
-  
-  .step {
-    text-align: center;
-    max-width: 200px;
-    padding: 10px;
-    box-sizing: border-box;
+
+  .text-section h1 {
+    font-size: 2rem;
   }
-  
-  .step img {
-    width: 50px;
-    height: 50px;
-    margin-bottom: 10px;
+
+  .booking-form h2 {
+    font-size: 1.5rem;
   }
-  
-  .step p {
-    font-size: 14px;
-    color: #333;
-    line-height: 1.5;
+}
+
+@media (max-width: 480px) {
+  .text-section h1 {
+    font-size: 1.8rem;
   }
-  
-  .step strong {
-    font-size: 16px;
-    color: #000;
+
+  .booking-form h2 {
+    font-size: 1.4rem;
   }
-  
-  /* Responsive styles */
-  @media (max-width: 768px) {
-    .steps {
-      flex-direction: column;
-      gap: 20px;
-    }
-  
-    .how-it-works h2 {
-      font-size: 20px;
-    }
-  
-    .step {
-      max-width: 100%;
-    }
-  
-    .step img {
-      width: 40px;
-      height: 40px;
-    }
-  
-    .step p {
-      font-size: 13px;
-    }
+
+  .form-group select {
+    font-size: 0.9rem;
   }
-  
-  @media (max-width: 480px) {
-    .how-it-works h2 {
-      font-size: 18px;
-    }
-  
-    .step img {
-      width: 30px;
-      height: 30px;
-    }
-  
-    .step p {
-      font-size: 12px;
-    }
+
+  button {
+    padding: 0.6rem;
   }
+}
 
     </style>
 
 </section>
+
+<script>
+
+export class Home {
+  pickupLocation = null; // Include name
+  dropLocation = null; // Include name
+
+  // List of all unique districts in Tamil Nadu
+  districts = [
+    'Ariyalur', 'Chengalpattu', 'Chennai', 'Coimbatore', 'Cuddalore', 'Dharmapuri', 'Dindigul',
+    'Erode', 'Kallakurichi', 'Kanchipuram', 'Kanyakumari', 'Karur', 'Krishnagiri', 'Madurai', 
+    'Mayiladuthurai', 'Nagapattinam', 'Namakkal', 'Nilgiris', 'Perambalur', 'Pudukkottai', 
+    'Ramanathapuram', 'Ranipet', 'Salem', 'Sivagangai', 'Tenkasi', 'Thanjavur', 'Theni', 
+    'Thiruvallur', 'Thiruvarur', 'Thoothukudi', 'Tiruchirappalli', 'Tirunelveli', 'Tirupattur', 
+    'Tiruppur', 'Tiruvannamalai', 'Vellore', 'Viluppuram', 'Virudhunagar'
+  ];
+
+  // Map of districts to their corresponding coordinates
+  coordinatesMap = {
+    'Ariyalur': { lat: 11.1612, lon: 79.2366 },
+    'Chengalpattu': { lat: 12.7602, lon: 80.0556 },
+    'Chennai': { lat: 13.0827, lon: 80.2707 },
+    'Coimbatore': { lat: 11.0168, lon: 76.9558 },
+    'Cuddalore': { lat: 11.7482, lon: 79.7652 },
+    'Dharmapuri': { lat: 12.1242, lon: 78.1044 },
+    'Dindigul': { lat: 10.3648, lon: 77.9852 },
+    'Erode': { lat: 11.3416, lon: 77.7172 },
+    'Kallakurichi': { lat: 11.1684, lon: 78.9341 },
+    'Kanchipuram': { lat: 12.8374, lon: 79.7056 },
+    'Kanyakumari': { lat: 8.0883, lon: 77.5705 },
+    'Karur': { lat: 17.0000, lon: 78.0000 }, // Replace with actual coordinates
+    'Krishnagiri': { lat: 12.5151, lon: 78.2243 },
+    'Madurai': { lat: 9.9258, lon: 78.1198 },
+    'Mayiladuthurai': { lat: 11.1041, lon: 79.6600 },
+    'Nagapattinam': { lat: 10.7612, lon: 79.8478 },
+    'Namakkal': { lat: 11.9420, lon: 78.1594 },
+    'Nilgiris': { lat: 11.4074, lon: 76.6924 },
+    'Perambalur': { lat: 11.1884, lon: 78.8351 },
+    'Pudukkottai': { lat: 10.3905, lon: 78.8256 },
+    'Ramanathapuram': { lat: 9.3576, lon: 78.5636 },
+    'Ranipet': { lat: 12.9548, lon: 79.3234 },
+    'Salem': { lat: 11.6643, lon: 78.1466 },
+    'Sivagangai': { lat: 9.8725, lon: 78.5718 },
+    'Tenkasi': { lat: 8.9481, lon: 77.2803 },
+    'Thanjavur': { lat: 10.7905, lon: 79.1392 },
+    'Theni': { lat: 10.0255, lon: 77.4964 },
+    'Thiruvallur': { lat: 13.0849, lon: 79.9400 },
+    'Thiruvarur': { lat: 10.7872, lon: 79.3716 },
+    'Thoothukudi': { lat: 8.8000, lon: 78.1300 },
+    'Tiruchirappalli': { lat: 10.7905, lon: 78.7047 },
+    'Tirunelveli': { lat: 8.7303, lon: 77.8657 },
+    'Tirupattur': { lat: 12.5184, lon: 78.7321 },
+    'Tiruppur': { lat: 11.0886, lon: 77.3333 },
+    'Tiruvannamalai': { lat: 12.2252, lon: 79.0674 },
+    'Vellore': { lat: 12.9165, lon: 79.1325 },
+    'Viluppuram': { lat: 11.9407, lon: 79.4595 },
+    'Virudhunagar': { lat: 9.4765, lon: 77.9741 },
+  };
+
+  constructor(router, locationService) { 
+    this.router = router; 
+    this.locationService = locationService; 
+  }
+
+  checkFare() {
+    if (!this.pickupLocation || !this.dropLocation) {
+      alert('Please select both pickup and drop locations.'); // Simple alert for feedback
+      return; // Exit if validation fails
+    }
+    
+    // Set locations in the LocationService
+    this.locationService.setPickupLocation(this.pickupLocation.lat, this.pickupLocation.lon,this.pickupLocation.name);
+    this.locationService.setDropLocation(this.dropLocation.lat, this.dropLocation.lon,this.dropLocation.name);
+
+    // Navigate to the customer component
+    this.router.navigate(['/customer']);
+  }
+
+  // Method to set pickup location
+  setPickup(lat, lon, name) {
+    this.pickupLocation = { lat, lon, name }; // Include name
+  }
+
+  // Method to set drop location
+  setDrop(lat, lon, name) {
+    this.dropLocation = { lat, lon, name }; // Include name
+  }
+
+  // Change event handlers for select elements
+  onPickupChange(selectedDistrict) {
+    console.log('Selected pickup district:', selectedDistrict.target.value);
+    const coordinates = this.coordinatesMap[selectedDistrict.target.value];
+    if (coordinates) {
+      this.setPickup(coordinates.lat, coordinates.lon, selectedDistrict.target.value); // Include name
+    } else {
+      alert('Coordinates not found for selected district');
+    }
+  }
+
+  onDropChange(selectedDistrict) {
+    const coordinates = this.coordinatesMap[selectedDistrict.target.value];
+    if (coordinates) {
+      this.setDrop(coordinates.lat, coordinates.lon, selectedDistrict.target.value); // Include name
+    } else {
+      alert('Coordinates not found for selected district');
+    }
+  }
+}
+
+</script>
 
     <!-- =-=-=-=-=-=-= FOOTER =-=-=-=-=-=-= -->
     <footer class="footer-area">
@@ -590,12 +591,6 @@
         
     </footer>
     
-	
-	<!-- =-=-=-=-=-=-= Quote Modal =-=-=-=-=-=-= -->
-	<div data-target="#request-quote" data-toggle="modal" class="quote-button hidden-xs">
-		  <a class="btn btn-primary" href="javascript:void(0)"><i class="fa fa-envelope"></i></a>
-	</div>
-	<!-- =-=-=-=-=-=-= Quote Modal End =-=-=-=-=-=-= -->
 
     <!-- =-=-=-=-=-=-= JQUERY =-=-=-=-=-=-= -->
     <script src="js/jquery.min.js"></script>
@@ -625,93 +620,6 @@
     <!-- Template Core JS -->
     <script src="js/custom.js"></script>
  <!-- =-=-=-=-=-=-= Quote Modal =-=-=-=-=-=-= --> 
-    <div class="modal fade " id="request-quote" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-body">
-                <div class="quotation-box-1">
-                    <h2>REQUEST A QUOTE</h2>
-                    <div class="desc-text">
-                        <p>Get a personalized quote for your logistics needs in Tamil Nadu.</p>
-                    </div>
-                    <form action="https://templates.scriptsbundle.com/logistic-pro/demo/logistic-pro/contact.html" method="post">
-                        <div class="row clearfix">
-                            <!--Form Group-->
-                            <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                <input class="form-control" type="text" placeholder="Your Name" value="" name="your-name">
-                            </div>
-                            <!--Form Group-->
-                            <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                <input class="form-control" type="text" placeholder="Mobile Number" value="" name="your-mobile">
-                            </div>
-                            <!--Form Group-->
-                            <div class="form-group col-md-12 col-sm-12 col-xs-12">
-                                <input class="form-control" type="email" placeholder="Email Address" value="" name="your-email">
-                            </div>
-                            <!--Form Group-->
-                            <div class="form-group col-md-12 col-sm-12 col-xs-12">
-                                <select class="quote-select form-control" name="sel-district">
-                                    <option>Select TN District</option>
-                                    <option>Chennai</option>
-                                    <option>Coimbatore</option>
-                                    <option>Madurai</option>
-                                    <option>Trichy</option>
-                                    <option>Tirunelveli</option>
-                                    <option>Salem</option>
-                                    <option>Tiruppur</option>
-                                    <option>Thoothukudi</option>
-                                    <option>Karur</option>
-                                    <option>Virudhunagar</option>
-                                    <option>Dindigul</option>
-                                    <option>Namakkal</option>
-                                    <option>Perambalur</option>
-                                    <option>Tiruchirappalli</option>
-                                    <option>Kanyakumari</option>
-                                    <option>Nilgiris</option>
-                                    <option>Kanniyakumari</option>
-                                    <option>Vellore</option>
-                                    <option>Ranipet</option>
-                                    <option>Ramanathapuram</option>
-                                    <option>Sivagangai</option>
-                                    <option>Thanjavur</option>
-                                    <option>Thiruvarur</option>
-                                    <option>Tiruvannamalai</option>
-                                    <option>Chengalpattu</option>
-                                    <option>Krishnagiri</option>
-                                    <option>Dharmapuri</option>
-                                    <option>Salem</option>
-                                    <option>Coimbatore</option>
-                                    <option>Madurai</option>
-                                    <option>Thiruvarur</option>
-                                    <option>Perambalur</option>
-                                    <option>Tirunelveli</option>
-                                    <option>Sivagangai</option>
-                                    <option>Virudhunagar</option>
-                                    <option>Thanjavur</option>
-                                    <option>Thiruvarur</option>
-                                    <option>Pudukkottai</option>
-                                    <option>Kanyakumari</option>
-                                    <option>Nilgiris</option>
-                                    <option>Namakkal</option>
-                                    <option>Dharmapuri</option>
-                                </select>
-                            </div>
-                            <!--Form Group-->
-                            <div class="form-group col-md-12 col-sm-12 col-xs-12">
-                                <textarea class="form-control" rows="7" cols="20" placeholder="Your Message" name="your-message"></textarea>
-                            </div>
-                            <!--Form Group-->
-                            <div class="form-group col-md-12 col-sm-12 col-xs-12 text-right">
-                                <button type="submit" class="custom-button light">Submit Request</button>
-                            </div>
-                        </div>
-                    </form>
-                    </div>
-                </div>
-                
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div>
     <!-- =-=-=-=-=-=-= Quote Modal End =-=-=-=-=-=-= -->
 </body>
 
