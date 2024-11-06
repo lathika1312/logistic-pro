@@ -128,157 +128,134 @@
 
     <section>
 
-<div class="booking-summary-container">
-  <!-- Main Body -->
-  <div class="booking-container">
-    <!-- Route Info Section -->
-    <div class="route-info">
-      <p><strong>Pickup Location:</strong> {{ pickupLocation }}</p>
-      <p><strong>Distance:</strong> {{ distance }} KM</p>
-      <p><strong>Drop Location:</strong> {{ dropLocation }}</p>
-    </div>
-
-    <!-- Step 1: Truck and Goods Selection -->
-    <div *ngIf="step === 1">
-      <div class="truck-selection">
-        <h3>Select Truck Type</h3>
-        <select [(ngModel)]="selectedTruck" (change)="onTruckSelect()">
-          <option value="" disabled selected hidden>Select Truck</option>
-          <option *ngFor="let truck of truckTypes" [value]="truck">{{ truck }}</option>
-        </select>
-      </div>
-
-      <div class="goods-selection" style="margin-top: 20px;">
-        <h3>Select Goods Type</h3>
-        <select [(ngModel)]="selectedGoods" (change)="onGoodsSelect()">
-          <option value="" disabled selected hidden>Select Goods Type</option>
-          <option *ngFor="let goods of goodsTypes" [value]="goods">{{ goods }}</option>
-        </select>
-      </div>
-
-      <div class="weight-input" style="margin-top: 20px;">
-        <label for="weight">Enter Weight</label>
-        <div class="weight-container">
-          <input type="number" id="weight" placeholder="Approx Weight (1 Ton = 1000 KG)" [(ngModel)]="weight" />
+      <div class="booking-summary-container">
+        <!-- Main Body -->
+        <div class="booking-container">
           
-          <label for="weightUnit" class="unit-label">Select Weight Unit</label>
-          <select id="weightUnit" [(ngModel)]="weightUnit" class="weight-select">
-            <option value="kg">KG</option>
-            <option value="ton">Ton</option>
-          </select>
-        </div>
-      </div>
-
-      <!-- Button Container for Step 1 -->
-      <div class="button-container" style="margin-top: 20px;">
-        <button class="next-button" (click)="onNext()">Next</button>
-      </div>
-    </div>
-
-    <!-- Step 2: Mobile Details -->
-    <div *ngIf="step === 2" class="mobile-form-container">
-      <form [formGroup]="mobileForm" (ngSubmit)="onSubmit()">
-        <div class="form-group">
-          <label for="mobile">Enter Mobile No</label>
-          <input
-              type="text"
-              id="mobile"
-              class="form-control"
-              formControlName="mobile"
-              placeholder="Mobile number"
-              maxlength="10"  
-              pattern="[0-9]*"  
-              inputmode="numeric"
-          />
-          <div *ngIf="mobileForm.get('mobile')?.invalid && (mobileForm.get('mobile')?.dirty || mobileForm.get('mobile')?.touched)" class="error">
-              <small *ngIf="mobileForm.get('mobile')?.errors?.['required']">Mobile number is required.</small>
-              <small *ngIf="mobileForm.get('mobile')?.errors?.['pattern']">Invalid mobile number format.</small>
+          <!-- Step 1: Truck and Goods Selection -->
+          <div id="step1" class="step">
+            <div class="route-info">
+              <p><strong>Pickup Location:</strong> <span id="pickupLocation">Location 1</span></p>
+              <p><strong>Distance:</strong> <span id="distance">15</span> KM</p>
+              <p><strong>Drop Location:</strong> <span id="dropLocation">Location 2</span></p>
+            </div>
+            
+            <div class="truck-selection">
+              <h3>Select Truck Type</h3>
+              <select id="truckType">
+                <option value="" disabled selected hidden>Select Truck</option>
+                <option value="Small Truck">Small Truck</option>
+                <option value="Medium Truck">Medium Truck</option>
+                <option value="Large Truck">Large Truck</option>
+              </select>
+            </div>
+      
+            <div class="goods-selection" style="margin-top: 20px;">
+              <h3>Select Goods Type</h3>
+              <select id="goodsType">
+                <option value="" disabled selected hidden>Select Goods Type</option>
+                <option value="Electronics">Electronics</option>
+                <option value="Furniture">Furniture</option>
+                <option value="Clothing">Clothing</option>
+              </select>
+            </div>
+      
+            <div class="weight-input" style="margin-top: 20px;">
+              <label for="weight">Enter Weight</label>
+              <input type="number" id="weight" placeholder="Approx Weight (1 Ton = 1000 KG)" />
+              
+              <label for="weightUnit" class="unit-label">Select Weight Unit</label>
+              <select id="weightUnit">
+                <option value="kg">KG</option>
+                <option value="ton">Ton</option>
+              </select>
+            </div>
+      
+            <div class="button-container" style="margin-top: 20px;">
+              <button id="nextButton1" class="next-button" onclick="goToStep(2)">Next</button>
+            </div>
+          </div>
+      
+          <!-- Step 2: Mobile Details -->
+          <div id="step2" class="step" style="display: none;">
+            <form id="mobileForm">
+              <div class="form-group">
+                <label for="mobile">Enter Mobile No</label>
+                <input type="text" id="mobile" maxlength="10" placeholder="Mobile number" pattern="[0-9]*" inputmode="numeric" />
+              </div>
+      
+              <div class="button-container">
+                <button type="button" class="back-button" onclick="goToStep(1)">Back</button>
+                <button type="button" class="next-button" onclick="goToStep(3)">Next</button>
+              </div>
+            </form>
+          </div>
+      
+          <!-- Step 3: Customer Details -->
+          <div id="step3" class="step" style="display: none;">
+            <form id="customerForm">
+              <div class="form-group">
+                <label for="customerType">Customer Type</label>
+                <select id="customerType">
+                  <option value="" disabled selected hidden>Select Customer Type</option>
+                  <option value="individual">Individual(Customer)</option>
+                  <option value="business">Business(Industry)</option>
+                </select>
+              </div>
+      
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" placeholder="Enter your name" />
+              </div>
+      
+              <div class="form-group">
+                <label for="email">Email (Optional)</label>
+                <input type="email" id="email" placeholder="Enter your email (optional)" />
+              </div>
+      
+              <div class="button-container">
+                <button type="button" class="back-button" onclick="goToStep(2)">Back</button>
+                <button type="button" class="next-button" onclick="goToStep(4)">Next</button>
+              </div>
+            </form>
+          </div>
+      
+          <!-- Step 4: Booking Summary -->
+          <div id="step4" class="step" style="display: none;">
+            <div class="header">
+              <h2 style="text-align: center;">Your Booking is Almost Done</h2>
+            </div>
+      
+            <div class="summary-details" style="text-align: center;">
+              <div class="detail">
+                <strong>Name</strong>
+                <p id="summaryName">John Doe</p>
+              </div>
+              <div class="detail">
+                <strong>Weight</strong>
+                <p id="summaryWeight">10 KG</p>
+              </div>
+              <div class="detail">
+                <strong>Goods Type</strong>
+                <p id="summaryGoods">Electronics</p>
+              </div>
+            </div>
+      
+            <div class="truck-info" style="text-align: center;">
+              <img src="assets/truck.png" alt="Truck Image" />
+              <p id="summaryTruck">Medium Truck (5 TON)</p>
+              <p class="estimated-fare">Estimated Fare: ₹ 500 - ₹ 1000</p>
+            </div>
+      
+            <div class="actions confirmation-buttons">
+              <button class="confirm-button" onclick="confirmBooking()">Confirm Booking</button>
+              <button class="request-callback-button" onclick="requestCallback()">Request Callback</button>
+              <button class="back-button" onclick="goToStep(3)">Go Back</button>
+            </div>
           </div>
         </div>
-
-        <div class="button-container">
-          <button type="button" class="back-button" (click)="goBack()">Back</button>
-          <button type="submit" [disabled]="mobileForm.invalid" class="next-btn">Next</button>
-        </div>
-      </form>
-    </div>
-
-    <!-- Step 3: Customer Details -->
-    <div *ngIf="step === 3" class="customer-form-container">
-      <form [formGroup]="customerForm" (ngSubmit)="onSubmit()">
-        <div class="form-group">
-          <label for="customerType">Customer Type</label>
-          <select id="customerType" class="form-control" formControlName="customerType">
-            <option value="" disabled selected hidden>Select Customer Type</option>
-            <option value="individual">Individual(Customer)</option>
-            <option value="business">Business(Industry)</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="name">Name</label>
-          <input
-            type="text"
-            id="name"
-            class="form-control"
-            formControlName="name"
-            placeholder="Enter your name"
-          />
-        </div>
-
-        <div class="form-group">
-          <label for="email">Email (Optional)</label>
-          <input
-            type="email"
-            id="email"
-            class="form-control"
-            formControlName="email"
-            placeholder="Enter your email (optional)"
-          />
-        </div>
-
-        <div class="button-container">
-          <button type="button" class="next-button" (click)="goBack()">Back</button>
-          <button type="submit" [disabled]="customerForm.invalid" class="next-btn">Submit</button>
-        </div>
-      </form>
-    </div>
-
-    <!-- Step 4: Booking Summary -->
-    <div *ngIf="step === 4" style="margin-bottom: 50px;">
-      <div class="header">
-        <h2 style="text-align: center;">Your Booking is Almost Done</h2>
       </div>
-
-      <div class="summary-details" style="text-align: center;">
-        <div class="detail">
-          <strong>Name</strong>
-          <p>{{ customerForm.get('name')?.value }}</p>
-        </div>
-        <div class="detail">
-          <strong>Weight</strong>
-          <p>{{ weight }} {{ weightUnit === 'kg' ? 'Kg' : 'Ton' }}</p>
-        </div>
-        <div class="detail">
-          <strong>Goods Type</strong>
-          <p>{{ selectedGoods }}</p>
-        </div>
-      </div>
-
-      <div class="truck-info" style="text-align: center;">
-        <img src="assets/truck.png" alt="Truck Image" />
-        <p>{{ selectedTruck }} ({{ truckCapacity }} TON)</p>
-        <p class="estimated-fare">Estimated Fare: ₹ {{ estimatedFareMin }} - ₹ {{ estimatedFareMax }}</p>
-      </div>
-
-      <div class="actions confirmation-buttons">
-        <button class="confirm-button" (click)="confirmBooking()">Confirm Booking</button>
-        <button class="request-callback-button" (click)="requestCallback()">Request Callback</button>
-        <button class="back-button" (click)="goBack()">Go Back</button>
-      </div>
-    </div>
-  </div>
-</div>
+      
 
 </section>
 
@@ -557,204 +534,46 @@ select {
 
     <script>
 
-export class customer {
-  step = 1; // Initialize step to 1
-  selectedTruck = '';
-  selectedGoods = '';
-  weight = 0;
-  weightUnit = 'kg'; // Default weight unit
-  truckTypes = [
-    'ACE / DOST / PICKUP (1.5 TON)',
-    'EICHER 14FT (3.5 TON)',
-    'EICHER 17FT (5 TON)',
-    'EICHER 19FT (7 TON)',
-    '20FT CONTAINER (6.5 TON)',
-    'EICHER PRO 22FT (10 TON)',
-    '32FT CONTAINER (7/8 TON)',
-    '32FT CONTAINER (15 TON)',
-    '20 / 32 / 40 FT All Side Open TRAILER',
-    'SELECT TRUCK LATER',
-    'LORRY/TAURUS (18/21/25 TON)',
-    '32FT CONTAINER (18 TON)'
-  ]; // Updated truck types
+let currentStep = 1;
 
-  goodsTypes = [
-    'Industrial Machinery', 'Household Goods', 'Parcel Service / luggage transport (Not Available)',
-    'Fresh Fruits / Vegetables / Coconut', 'FMCG / Packed Food Products', 'Healthcare / Pharmacy Products / Medicines',
-    'Cement / Bricks / Sand', 'Chemicals Powder / Liquid Barrels', 'Agriculture Fertilizer (Not available)',
-    'Electronic Goods / Home Appliances', 'Paper / Packaging / Printed Material', 'Electrical Transformer / Panels / Equipments',
-    'Solar / Battery / Inverter Products', 'Ceramic / Hardware Supplies', 'Electrical Wires / Cables', 'Books / Stationery / Toys / Gifts',
-    'Aluminium / Steel / Metal Products', 'Building scaffolding / Construction Material', 'Paint / Houseware Supplies',
-    'Textile / Garments', 'Plastic / PVC / Rubber Pipes', 'Machine / Auto Parts', 'Exhibitions / Event Supplies',
-    'Furniture / Plywood / Laminates', 'Go Karts / Dirt Bikes / Bulk E.V', 'Pet Transport', 'ODC Consignment',
-    'Metal / Plastic Scrap', 'Plants / Pots', 'Spices / Dry fruits', 'Manufacturing Plant Machines', 'One Scooter or Bike',
-    'Rice/Wheat/Grains', 'Books', 'Paper Roll / Packing items', 'Others', 'Marble / Granite', 'Office shifting',
-    'LED Sign Boards', 'Frozen Items', 'Old Servers / Computers / Laptops', 'Animal Feeds', 'Animals / livestock',
-    'Drones / Robots', 'Wood Chips & Waste items'
-  ]; // Updated goods types
-
-  mobileForm;
-  customerForm;
-
-  truckCapacity = 0; // Initialize truck capacity
-  estimatedFareMin = 0; // Initialize minimum estimated fare
-  estimatedFareMax = 0; // Initialize maximum estimated fare
-  distance = 0; // Initialize distance
-  pickupLocation = null; // To hold the pickup location
-  dropLocation = null; // To hold the drop location
-
-  constructor(fb, locationService) {
-    this.fb = fb;
-    this.locationService = locationService;
-
-    // Initialize the forms
-    this.mobileForm = this.fb.group({
-      mobile: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]]
-    });
-
-    this.customerForm = this.fb.group({
-      customerType: ['', Validators.required],
-      name: ['', Validators.required],
-      email: ['']
-    });
+function goToStep(step) {
+  // Hide all steps
+  for (let i = 1; i <= 4; i++) {
+    document.getElementById('step' + i).style.display = 'none';
   }
 
-  ngOnInit() {
-    this.pickupLocation = this.locationService.getPickupLocationName();
-    this.dropLocation = this.locationService.getDropLocationName();
+  // Show the current step
+  document.getElementById('step' + step).style.display = 'block';
+  currentStep = step;
 
-    // Calculate distance from service
-    this.locationService.calculateDistance().subscribe(
-      distance => {
-        this.distance = distance;
-        this.calculateFare(); // Calculate fare once the distance is available
-      },
-      error => {
-        console.error('Error fetching distance:', error);
-        this.distance = 0; // Set distance to 0 in case of error
-        this.calculateFare(); // Optionally, calculate fare based on 0 distance
-      }
-    );
-  }
-
-  calculateFare() {
-    const fareRate = 200; // ₹200 per kilometer
-    this.estimatedFareMin = Math.round(this.distance * fareRate); // Round to the nearest whole number
-    this.estimatedFareMax = Math.round(this.estimatedFareMin * 1.1); // Round to the nearest whole number
-  }
-
-  // Handle truck type selection
-  onTruckSelect() {
-    // Logic to set truck capacity based on selected truck
-    switch (this.selectedTruck) {
-      case 'ACE / DOST / PICKUP (1.5 TON)':
-        this.truckCapacity = 1.5;
-        break;
-      case 'EICHER 14FT (3.5 TON)':
-        this.truckCapacity = 3.5;
-        break;
-      case 'EICHER 17FT (5 TON)':
-        this.truckCapacity = 5;
-        break;
-      case 'EICHER 19FT (7 TON)':
-        this.truckCapacity = 7;
-        break;
-      case '20FT CONTAINER (6.5 TON)':
-        this.truckCapacity = 6.5;
-        break;
-      case 'EICHER PRO 22FT (10 TON)':
-        this.truckCapacity = 10;
-        break;
-      case '32FT CONTAINER (7/8 TON)':
-        this.truckCapacity = 7.5; // Average for 7/8 ton
-        break;
-      case '32FT CONTAINER (15 TON)':
-        this.truckCapacity = 15;
-        break;
-      case '20 / 32 / 40 FT All Side Open TRAILER':
-        this.truckCapacity = 20; // Example capacity
-        break;
-      case 'SELECT TRUCK LATER':
-        this.truckCapacity = 0; // No specific capacity
-        break;
-      case 'LORRY/TAURUS (18/21/25 TON)':
-        this.truckCapacity = 25; // Highest capacity in this range
-        break;
-      case '32FT CONTAINER (18 TON)':
-        this.truckCapacity = 18;
-        break;
-      default:
-        this.truckCapacity = 0; // Reset if no valid truck selected
-    }
-  }
-
-  // Handle goods type selection
-  onGoodsSelect() {
-    // Logic for goods selection
-  }
-
-  // Move to the next step
-  onNext() {
-    if (this.step === 1) {
-      this.step++; // Move to step 2
-    } else if (this.step === 2) {
-      if (this.mobileForm.valid) {
-        this.step++; // Move to step 3 if mobile form is valid
-      }
-    }
-  }
-
-  goBack() {
-    if (this.step > 1) {
-      this.step--; // Move back one step
-    }
-  }
-
-  // Handle mobile form submission
-  onSubmit() {
-    console.log('Submitting Form, Current Step:', this.step);
-    
-    // Step 2: Mobile Form Submission
-    if (this.step === 2 && this.mobileForm.valid) {
-      console.log('Mobile Form Submitted:', this.mobileForm.value);
-      this.step++; // Move to the next step after submitting mobile form
-  
-    // Step 3: Customer Form Submission
-    } else if (this.step === 3 && this.customerForm.valid) {
-      console.log('Customer Form Submitted:', this.customerForm.value);
-      
-      // Handle your booking confirmation logic here
-      this.confirmBooking(); // Finalize the booking or proceed as necessary
-      
-      // Optionally, you could navigate to the summary step if needed
-      this.step++;
-    } else {
-      console.log('Form is invalid:', this.step === 2 ? this.mobileForm.errors : this.customerForm.errors);
-    }
-  }
-  
-  confirmBooking() {
-    // Your logic to confirm booking, e.g., API call to save booking information
-    console.log('Booking confirmed with details:', {
-      truck: this.selectedTruck,
-      weight: this.weight,
-      weightUnit: this.weightUnit,
-      goodsType: this.selectedGoods,
-      customerDetails: this.customerForm.value,
-      distance: this.distance, // Include distance in booking details
-      fare: `₹ ${this.estimatedFareMin} - ₹ ${this.estimatedFareMax}`, // Include fare range in booking details
-      pickupLocation: this.pickupLocation, // Include pickup location
-      dropLocation: this.dropLocation // Include drop location
-    });
-  
-    // Optionally navigate to a confirmation page or display a success message
-  }
-  
-  requestCallback() {
-    // Logic for requesting a callback
-    console.log('Callback requested for mobile:', this.mobileForm.value.mobile);
+  // Handle specific behavior based on the step
+  if (step === 1) {
+    // You can add logic for Step 1 (like validating selections)
+  } else if (step === 2) {
+    // You can add logic for Step 2 (like validating mobile number)
+  } else if (step === 3) {
+    // You can add logic for Step 3 (like validating customer details)
+  } else if (step === 4) {
+    // Show summary details for Step 4
+    document.getElementById('summaryName').innerText = document.getElementById('name').value;
+    document.getElementById('summaryWeight').innerText = document.getElementById('weight').value + " " + document.getElementById('weightUnit').value;
+    document.getElementById('summaryGoods').innerText = document.getElementById('goodsType').value;
+    document.getElementById('summaryTruck').innerText = document.getElementById('truckType').value + " (5 TON)";
   }
 }
+
+function confirmBooking() {
+  alert('Booking Confirmed!');
+}
+
+function requestCallback() {
+  alert('Callback Requested!');
+}
+
+// Initialize by showing the first step
+window.onload = function () {
+  goToStep(1);
+};
 
     </script>
 
