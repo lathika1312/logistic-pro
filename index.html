@@ -333,86 +333,89 @@
                         <div class="desc-text">
                             <p>Get a personalized quote for your logistics needs in Tamil Nadu.</p>
                         </div>
-                        <form action="contact.html" method="post">
+                        <form id="demoForm" onsubmit="handleFormSubmit(event)">
                             <div class="row clearfix">
-                        
-                                <!--Form Group-->
                                 <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                    <input class="form-control" type="text" placeholder="Your Name" value="" name="your-name" required>
+                                    <input class="form-control" type="text" placeholder="Your Name" name="your-name" required>
                                 </div>
-                        
-                                <!--Form Group-->
+                
                                 <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                    <input class="form-control" type="tel" placeholder="Mobile Number" value="" name="mobile-number" required>
+                                    <input class="form-control" type="tel" placeholder="Mobile Number" name="mobile-number" required>
                                 </div>
-                        
-                                <!--Form Group-->
+                
                                 <div class="form-group col-md-12 col-sm-12 col-xs-12">
-                                    <input class="form-control" type="email" placeholder="Email Address" value="" name="your-email" required>
+                                    <input class="form-control" type="email" placeholder="Email Address" name="your-email" required>
                                 </div>
-                        
-                                <!--Form Group-->
+                
                                 <div class="form-group col-md-12 col-sm-12 col-xs-12">
                                     <select class="form-control" name="sel-district" required>
                                         <option value="">Select TN District</option>
                                         <option value="Chennai">Chennai</option>
                                         <option value="Coimbatore">Coimbatore</option>
-                                        <option value="Madurai">Madurai</option>
-                                        <option value="Trichy">Trichy</option>
-                                        <option value="Tirunelveli">Tirunelveli</option>
-                                        <option value="Salem">Salem</option>
-                                        <option value="Erode">Erode</option>
-                                        <option value="Tiruppur">Tiruppur</option>
-                                        <option value="Thoothukudi">Thoothukudi</option>
-                                        <option value="Kanyakumari">Kanyakumari</option>
-                                        <option value="Karur">Karur</option>
-                                        <option value="Dindigul">Dindigul</option>
-                                        <option value="Virudhunagar">Virudhunagar</option>
-                                        <option value="Namakkal">Namakkal</option>
-                                        <option value="Ramanathapuram">Ramanathapuram</option>
-                                        <option value="Perambalur">Perambalur</option>
-                                        <option value="Ariyalur">Ariyalur</option>
-                                        <option value="Sivaganga">Sivaganga</option>
-                                        <option value="Pudukkottai">Pudukkottai</option>
-                                        <option value="Kanchipuram">Kanchipuram</option>
-                                        <option value="Tiruvallur">Tiruvallur</option>
-                                        <option value="Vellore">Vellore</option>
-                                        <option value="Ranipet">Ranipet</option>
-                                        <option value="Tirupattur">Tirupattur</option>
-                                        <option value="Krishnagiri">Krishnagiri</option>
-                                        <option value="Dharmapuri">Dharmapuri</option>
-                                        <option value="Thanjavur">Thanjavur</option>
-                                        <option value="Nagapattinam">Nagapattinam</option>
-                                        <option value="Thiruvarur">Thiruvarur</option>
-                                        <option value="Kaveripakkam">Kaveripakkam</option>
-                                        <option value="Tiruvarur">Tiruvarur</option>
-                                        <option value="Tirunelveli">Tirunelveli</option>
-                                        <option value="Kanyakumari">Kanyakumari</option>
-                                        <option value="Tiruchirappalli">Tiruchirappalli</option>
-                                        <option value="Karur">Karur</option>
-                                        <option value="Madurai">Madurai</option>
-                                        <option value="Pudukkottai">Pudukkottai</option>
-                                        <option value="Salem">Salem</option>
-                                        <option value="Erode">Erode</option>
-                                        <option value="Sivaganga">Sivaganga</option>
+                                        <!-- Add other districts here -->
                                         <option value="Virudhunagar">Virudhunagar</option>
                                     </select>
                                 </div>
-                        
-                                <!--Form Group-->
+                
                                 <div class="form-group col-md-12 col-sm-12 col-xs-12">
-                                    <textarea class="form-control" rows="7" cols="20" placeholder="Your Message" name="your-message"></textarea>
+                                    <textarea class="form-control" rows="7" placeholder="Your Message" name="your-message"></textarea>
                                 </div>
-                        
-                                <!--Form Group-->
+                
                                 <div class="form-group col-md-12 col-sm-12 col-xs-12 text-right">
                                     <button type="submit" class="custom-button light">Submit Request</button>
                                 </div>
                             </div>
                         </form>
-                        
+                
+                        <div id="success-message">Your request has been submitted successfully!</div>
+                        <div id="error-message">There was an error submitting your request. Please try again later.</div>
                     </div>
                 </div>
+
+                <style>
+                    #success-message {
+                        display: none;
+                        color: green;
+                    }
+                    #error-message {
+                        display: none;
+                        color: red;
+                    }
+                </style>
+                
+                <!-- JavaScript to Handle Form Submission -->
+                <script>
+                    function handleFormSubmit(event) {
+    event.preventDefault(); // Prevent the default form submission
+    const formData = new FormData(document.getElementById("demoForm"));
+
+    // Send AJAX request
+    fetch("/logistic-pro/send-mail.php", {
+        method: "POST",
+        body: formData
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("Network response was not ok");
+        }
+        return response.json();
+    })
+    .then(data => {
+        if (data.status === "success") {
+            document.getElementById("success-message").style.display = "block";
+            document.getElementById("error-message").style.display = "none";
+        } else {
+            document.getElementById("error-message").textContent = data.message;
+            document.getElementById("error-message").style.display = "block";
+        }
+    })
+    .catch(error => {
+        console.error("Error:", error);
+        document.getElementById("error-message").style.display = "block";
+    });
+}
+
+                </script>              
             </div>
         </div>
     </section>
@@ -691,13 +694,6 @@
 </footer>
 
 
-	
-	<!-- =-=-=-=-=-=-= Quote Modal =-=-=-=-=-=-= -->
-	<div data-target="#request-quote" data-toggle="modal" class="quote-button hidden-xs">
-		  <a class="btn btn-primary" href="javascript:void(0)"><i class="fa fa-envelope"></i></a>
-	</div>
-	<!-- =-=-=-=-=-=-= Quote Modal End =-=-=-=-=-=-= -->
-
     <!-- =-=-=-=-=-=-= JQUERY =-=-=-=-=-=-= -->
     <script src="js/jquery.min.js"></script>
     <!-- Bootstrap Core Css  -->
@@ -726,94 +722,6 @@
     <!-- Template Core JS -->
     <script src="js/custom.js"></script>
  <!-- =-=-=-=-=-=-= Quote Modal =-=-=-=-=-=-= --> 
-    <div class="modal fade " id="request-quote" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-body">
-                <div class="quotation-box-1">
-                        <h2>REQUEST A QUOTE</h2>
-                        <div class="desc-text">
-                            <p>Get a personalized quote for your logistics needs in Tamil Nadu..</p>
-                        </div>
-                        <form action="https://templates.scriptsbundle.com/logistic-pro/demo/logistic-pro/contact.html" method="post">
-                            <div class="row clearfix">
-                                <!--Form Group-->
-                                <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                    <input class="form-control" type="text" placeholder="Your Name" value="" name="your-name">
-                                </div>
-                                <!--Form Group-->
-                                <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                    <input class="form-control" type="text" placeholder="Mobile Number" value="" name="your-mobile">
-                                </div>
-                                <!--Form Group-->
-                                <div class="form-group col-md-12 col-sm-12 col-xs-12">
-                                    <input class="form-control" type="email" placeholder="Email Address" value="" name="your-email">
-                                </div>
-                                <!--Form Group-->
-                                <div class="form-group col-md-12 col-sm-12 col-xs-12">
-                                    <select class="quote-select form-control" name="sel-district">
-                                        <option>Select TN District</option>
-                                        <option>Chennai</option>
-                                        <option>Coimbatore</option>
-                                        <option>Madurai</option>
-                                        <option>Trichy</option>
-                                        <option>Tirunelveli</option>
-                                        <option>Salem</option>
-                                        <option>Tiruppur</option>
-                                        <option>Thoothukudi</option>
-                                        <option>Karur</option>
-                                        <option>Virudhunagar</option>
-                                        <option>Dindigul</option>
-                                        <option>Namakkal</option>
-                                        <option>Perambalur</option>
-                                        <option>Tiruchirappalli</option>
-                                        <option>Kanyakumari</option>
-                                        <option>Nilgiris</option>
-                                        <option>Kanniyakumari</option>
-                                        <option>Vellore</option>
-                                        <option>Ranipet</option>
-                                        <option>Ramanathapuram</option>
-                                        <option>Sivagangai</option>
-                                        <option>Thanjavur</option>
-                                        <option>Thiruvarur</option>
-                                        <option>Tiruvannamalai</option>
-                                        <option>Chengalpattu</option>
-                                        <option>Krishnagiri</option>
-                                        <option>Dharmapuri</option>
-                                        <option>Salem</option>
-                                        <option>Coimbatore</option>
-                                        <option>Madurai</option>
-                                        <option>Thiruvarur</option>
-                                        <option>Perambalur</option>
-                                        <option>Tirunelveli</option>
-                                        <option>Sivagangai</option>
-                                        <option>Virudhunagar</option>
-                                        <option>Thanjavur</option>
-                                        <option>Thiruvarur</option>
-                                        <option>Pudukkottai</option>
-                                        <option>Kanyakumari</option>
-                                        <option>Nilgiris</option>
-                                        <option>Namakkal</option>
-                                        <option>Dharmapuri</option>
-                                    </select>
-                                </div>
-                                <!--Form Group-->
-                                <div class="form-group col-md-12 col-sm-12 col-xs-12">
-                                    <textarea class="form-control" rows="7" cols="20" placeholder="Your Message" name="your-message"></textarea>
-                                </div>
-                                <!--Form Group-->
-                                <div class="form-group col-md-12 col-sm-12 col-xs-12 text-right">
-                                    <button type="submit" class="custom-button light">Submit Request</button>
-                                </div>
-                            </div>
-                        </form>
-                        
-                    </div>
-                </div>
-                
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div>
     <!-- =-=-=-=-=-=-= Quote Modal End =-=-=-=-=-=-= -->
 </body>
 
