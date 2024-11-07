@@ -142,10 +142,29 @@
           <!-- Step 1: Truck and Goods Selection -->
           <div id="step1" class="step">
             <div class="route-info">
-              <p><strong>Pickup Location:</strong> <span id="pickupLocation">Location 1</span></p>
-              <p><strong>Distance:</strong> <span id="distance">15</span> KM</p>
-              <p><strong>Drop Location:</strong> <span id="dropLocation">Location 2</span></p>
+                <p><strong>Pickup Location:</strong> <span id="pickupLocation">Location 1</span></p>
+                <p><strong>Distance:</strong> <span id="distance">15</span> KM</p>
+                <p><strong>Drop Location:</strong> <span id="dropLocation">Location 2</span></p>
             </div>
+        </div>
+        
+        <script>
+            // Retrieve data from localStorage
+            const pickup = localStorage.getItem("pickupLocation");
+            const drop = localStorage.getItem("dropLocation");
+            const distance = localStorage.getItem("distance");
+            const fare = localStorage.getItem("fare");
+            const minFare = localStorage.getItem("minFare");
+            const maxFare = localStorage.getItem("maxFare");
+        
+            // Update the HTML content with the retrieved data
+            document.getElementById("pickupLocation").textContent = pickup || 'Location 1';
+    document.getElementById("dropLocation").textContent = drop || 'Location 2';
+    document.getElementById("distance").textContent = distance || '0';
+    document.getElementById("estimatedFare").textContent = `₹ ${fare || '0'}`;
+    document.getElementById("minFare").textContent = `₹ ${minFare || '0'}`;
+    document.getElementById("maxFare").textContent = `₹ ${maxFare || '0'}`; // Display max fare or default to '₹ 0'
+        </script>
             
             <div class="truck-selection">
               <h3>Select Truck Type</h3>
@@ -251,7 +270,13 @@
             <div class="truck-info" style="text-align: center;">
               <img src="assets/truck.png" alt="Truck Image" />
               <p id="summaryTruck">Medium Truck (5 TON)</p>
-              <p class="estimated-fare">Estimated Fare: ₹ 500 - ₹ 1000</p>
+              <p class="estimated-fare">
+                Estimated Fare: ₹ <span id="estimatedFare"></span>
+                <span id="minFareLabel">Min: ₹ <span id="minFare"></span></span> |
+                <span id="maxFareLabel">Max: ₹ <span id="maxFare"></span></span>
+            </p>
+            
+
             </div>
       
             <div class="actions confirmation-buttons">
