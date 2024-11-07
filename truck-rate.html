@@ -467,16 +467,25 @@ const truckBooking = new TruckBooking();
     const pickupLocation = document.getElementById("pickup").value;
     const dropLocation = document.getElementById("drop").value;
 
+    // Ensure both pickup and drop locations are selected and are different
     if (pickupLocation && dropLocation && pickupLocation !== dropLocation) {
-        // Check if locations exist in the coordinates map
+        // Check if the locations exist in the coordinates map
         if (truckBooking.coordinatesMap[pickupLocation] && truckBooking.coordinatesMap[dropLocation]) {
             const { lat: lat1, lon: lon1 } = truckBooking.coordinatesMap[pickupLocation];
             const { lat: lat2, lon: lon2 } = truckBooking.coordinatesMap[dropLocation];
 
+            // Calculate distance and fare
             const distance = truckBooking.calculateDistance(lat1, lon1, lat2, lon2);
             const fare = truckBooking.calculateFare(distance);
 
-            alert(`Distance: ${distance.toFixed(2)} km\nEstimated Fare: ₹${fare.toFixed(2)}`);
+            // Store data in localStorage
+            localStorage.setItem("pickupLocation", pickupLocation);
+            localStorage.setItem("dropLocation", dropLocation);
+            localStorage.setItem("distance", distance.toFixed(2));
+            localStorage.setItem("fare", fare.toFixed(2));
+
+            // Redirect to customer.html
+            window.location.href = "customer.html";
         } else {
             alert("Selected locations are not available in the system.");
         }
@@ -484,6 +493,7 @@ const truckBooking = new TruckBooking();
         alert("Please select valid and distinct pickup and drop locations.");
     }
 }
+
 
 
 

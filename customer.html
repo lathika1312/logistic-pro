@@ -142,10 +142,23 @@
           <!-- Step 1: Truck and Goods Selection -->
           <div id="step1" class="step">
             <div class="route-info">
-              <p><strong>Pickup Location:</strong> <span id="pickupLocation">Location 1</span></p>
-              <p><strong>Distance:</strong> <span id="distance">15</span> KM</p>
-              <p><strong>Drop Location:</strong> <span id="dropLocation">Location 2</span></p>
+                <p><strong>Pickup Location:</strong> <span id="pickupLocation">Location 1</span></p>
+                <p><strong>Distance:</strong> <span id="distance">15</span> KM</p>
+                <p><strong>Drop Location:</strong> <span id="dropLocation">Location 2</span></p>
             </div>
+        </div>
+        
+        <script>
+            // Retrieve data from localStorage
+            const pickup = localStorage.getItem("pickupLocation");
+            const drop = localStorage.getItem("dropLocation");
+            const distance = localStorage.getItem("distance");
+        
+            // Update the HTML content with the retrieved data
+            document.getElementById("pickupLocation").textContent = pickup || 'Location 1'; // Default to 'Location 1' if not found
+            document.getElementById("dropLocation").textContent = drop || 'Location 2'; // Default to 'Location 2' if not found
+            document.getElementById("distance").textContent = distance || '0'; // Default to '0' if not found
+        </script>
             
             <div class="truck-selection">
               <h3>Select Truck Type</h3>
