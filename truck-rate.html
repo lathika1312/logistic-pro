@@ -385,111 +385,101 @@ button:hover {
 
 <script>
 
-export class Home {
-  pickupLocation = null; // Include name
-  dropLocation = null; // Include name
-
-  // List of all unique districts in Tamil Nadu
-  districts = [
-    'Ariyalur', 'Chengalpattu', 'Chennai', 'Coimbatore', 'Cuddalore', 'Dharmapuri', 'Dindigul',
-    'Erode', 'Kallakurichi', 'Kanchipuram', 'Kanyakumari', 'Karur', 'Krishnagiri', 'Madurai', 
-    'Mayiladuthurai', 'Nagapattinam', 'Namakkal', 'Nilgiris', 'Perambalur', 'Pudukkottai', 
-    'Ramanathapuram', 'Ranipet', 'Salem', 'Sivagangai', 'Tenkasi', 'Thanjavur', 'Theni', 
-    'Thiruvallur', 'Thiruvarur', 'Thoothukudi', 'Tiruchirappalli', 'Tirunelveli', 'Tirupattur', 
-    'Tiruppur', 'Tiruvannamalai', 'Vellore', 'Viluppuram', 'Virudhunagar'
-  ];
-
+class TruckBooking{
+  constructor() {
   // Map of districts to their corresponding coordinates
-  coordinatesMap = {
-    'Ariyalur': { lat: 11.1612, lon: 79.2366 },
-    'Chengalpattu': { lat: 12.7602, lon: 80.0556 },
-    'Chennai': { lat: 13.0827, lon: 80.2707 },
-    'Coimbatore': { lat: 11.0168, lon: 76.9558 },
-    'Cuddalore': { lat: 11.7482, lon: 79.7652 },
-    'Dharmapuri': { lat: 12.1242, lon: 78.1044 },
-    'Dindigul': { lat: 10.3648, lon: 77.9852 },
-    'Erode': { lat: 11.3416, lon: 77.7172 },
-    'Kallakurichi': { lat: 11.1684, lon: 78.9341 },
-    'Kanchipuram': { lat: 12.8374, lon: 79.7056 },
-    'Kanyakumari': { lat: 8.0883, lon: 77.5705 },
-    'Karur': { lat: 17.0000, lon: 78.0000 }, // Replace with actual coordinates
-    'Krishnagiri': { lat: 12.5151, lon: 78.2243 },
-    'Madurai': { lat: 9.9258, lon: 78.1198 },
-    'Mayiladuthurai': { lat: 11.1041, lon: 79.6600 },
-    'Nagapattinam': { lat: 10.7612, lon: 79.8478 },
-    'Namakkal': { lat: 11.9420, lon: 78.1594 },
-    'Nilgiris': { lat: 11.4074, lon: 76.6924 },
-    'Perambalur': { lat: 11.1884, lon: 78.8351 },
-    'Pudukkottai': { lat: 10.3905, lon: 78.8256 },
-    'Ramanathapuram': { lat: 9.3576, lon: 78.5636 },
-    'Ranipet': { lat: 12.9548, lon: 79.3234 },
-    'Salem': { lat: 11.6643, lon: 78.1466 },
-    'Sivagangai': { lat: 9.8725, lon: 78.5718 },
-    'Tenkasi': { lat: 8.9481, lon: 77.2803 },
-    'Thanjavur': { lat: 10.7905, lon: 79.1392 },
-    'Theni': { lat: 10.0255, lon: 77.4964 },
-    'Thiruvallur': { lat: 13.0849, lon: 79.9400 },
-    'Thiruvarur': { lat: 10.7872, lon: 79.3716 },
-    'Thoothukudi': { lat: 8.8000, lon: 78.1300 },
-    'Tiruchirappalli': { lat: 10.7905, lon: 78.7047 },
-    'Tirunelveli': { lat: 8.7303, lon: 77.8657 },
-    'Tirupattur': { lat: 12.5184, lon: 78.7321 },
-    'Tiruppur': { lat: 11.0886, lon: 77.3333 },
-    'Tiruvannamalai': { lat: 12.2252, lon: 79.0674 },
-    'Vellore': { lat: 12.9165, lon: 79.1325 },
-    'Viluppuram': { lat: 11.9407, lon: 79.4595 },
-    'Virudhunagar': { lat: 9.4765, lon: 77.9741 },
-  };
-
-  constructor(router, locationService) { 
-    this.router = router; 
-    this.locationService = locationService; 
+    this.coordinatesMap = {
+      'Ariyalur': { lat: 11.1612, lon: 79.2366 },
+      'Chengalpattu': { lat: 12.7602, lon: 80.0556 },
+      'Chennai': { lat: 13.0827, lon: 80.2707 },
+      'Coimbatore': { lat: 11.0168, lon: 76.9558 },
+      'Cuddalore': { lat: 11.7482, lon: 79.7652 },
+      'Dharmapuri': { lat: 12.1242, lon: 78.1044 },
+      'Dindigul': { lat: 10.3648, lon: 77.9852 },
+      'Erode': { lat: 11.3416, lon: 77.7172 },
+      'Kallakurichi': { lat: 11.1684, lon: 78.9341 },
+      'Kanchipuram': { lat: 12.8374, lon: 79.7056 },
+      'Kanyakumari': { lat: 8.0883, lon: 77.5705 },
+      'Karur': { lat: 10.9578, lon: 78.0807 }, 
+      'Krishnagiri': { lat: 12.5151, lon: 78.2243 },
+      'Madurai': { lat: 9.9258, lon: 78.1198 },
+      'Mayiladuthurai': { lat: 11.1041, lon: 79.6600 },
+      'Nagapattinam': { lat: 10.7612, lon: 79.8478 },
+      'Namakkal': { lat: 11.9420, lon: 78.1594 },
+      'Nilgiris': { lat: 11.4074, lon: 76.6924 },
+      'Perambalur': { lat: 11.1884, lon: 78.8351 },
+      'Pudukkottai': { lat: 10.3905, lon: 78.8256 },
+      'Ramanathapuram': { lat: 9.3576, lon: 78.5636 },
+      'Ranipet': { lat: 12.9548, lon: 79.3234 },
+      'Salem': { lat: 11.6643, lon: 78.1466 },
+      'Sivagangai': { lat: 9.8725, lon: 78.5718 },
+      'Tenkasi': { lat: 8.9481, lon: 77.2803 },
+      'Thanjavur': { lat: 10.7905, lon: 79.1392 },
+      'Theni': { lat: 10.0255, lon: 77.4964 },
+      'Thiruvallur': { lat: 13.0849, lon: 79.9400 },
+      'Thiruvarur': { lat: 10.7872, lon: 79.3716 },
+      'Thoothukudi': { lat: 8.8000, lon: 78.1300 },
+      'Tiruchirappalli': { lat: 10.7905, lon: 78.7047 },
+      'Tirunelveli': { lat: 8.7303, lon: 77.8657 },
+      'Tirupattur': { lat: 12.5184, lon: 78.7321 },
+      'Tiruppur': { lat: 11.0886, lon: 77.3333 },
+      'Tiruvannamalai': { lat: 12.2252, lon: 79.0674 },
+      'Vellore': { lat: 12.9165, lon: 79.1325 },
+      'Viluppuram': { lat: 11.9407, lon: 79.4595 },
+      'Virudhunagar': { lat: 9.4765, lon: 77.9741 },
+    };
   }
 
-  checkFare() {
-    if (!this.pickupLocation || !this.dropLocation) {
-      alert('Please select both pickup and drop locations.'); // Simple alert for feedback
-      return; // Exit if validation fails
-    }
-    
-    // Set locations in the LocationService
-    this.locationService.setPickupLocation(this.pickupLocation.lat, this.pickupLocation.lon,this.pickupLocation.name);
-    this.locationService.setDropLocation(this.dropLocation.lat, this.dropLocation.lon,this.dropLocation.name);
-
-    // Navigate to the customer component
-    this.router.navigate(['/customer']);
+  // Method to calculate distance between two coordinates
+  calculateDistance(lat1, lon1, lat2, lon2) {
+    const R = 6371; // Earth's radius in km
+    const dLat = this.deg2rad(lat2 - lat1);
+    const dLon = this.deg2rad(lon2 - lon1);
+    const a =
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(this.deg2rad(lat1)) * Math.cos(this.deg2rad(lat2)) *
+      Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    return R * c; // Distance in km
   }
 
-  // Method to set pickup location
-  setPickup(lat, lon, name) {
-    this.pickupLocation = { lat, lon, name }; // Include name
+  // Helper function to convert degrees to radians
+  deg2rad(deg) {
+    return deg * (Math.PI / 180);
   }
 
-  // Method to set drop location
-  setDrop(lat, lon, name) {
-    this.dropLocation = { lat, lon, name }; // Include name
-  }
-
-  // Change event handlers for select elements
-  onPickupChange(selectedDistrict) {
-    console.log('Selected pickup district:', selectedDistrict.target.value);
-    const coordinates = this.coordinatesMap[selectedDistrict.target.value];
-    if (coordinates) {
-      this.setPickup(coordinates.lat, coordinates.lon, selectedDistrict.target.value); // Include name
-    } else {
-      alert('Coordinates not found for selected district');
-    }
-  }
-
-  onDropChange(selectedDistrict) {
-    const coordinates = this.coordinatesMap[selectedDistrict.target.value];
-    if (coordinates) {
-      this.setDrop(coordinates.lat, coordinates.lon, selectedDistrict.target.value); // Include name
-    } else {
-      alert('Coordinates not found for selected district');
-    }
+  // Method to calculate fare based on distance
+  calculateFare(distance) {
+    const ratePerKm = 100; // Example rate per kilometer
+    return distance * ratePerKm;
   }
 }
+const truckBooking = new TruckBooking();
+  // Method to check fare and display result
+  function checkFare() {
+    const pickupLocation = document.getElementById("pickup").value;
+    const dropLocation = document.getElementById("drop").value;
+
+    if (pickupLocation && dropLocation && pickupLocation !== dropLocation) {
+        // Check if locations exist in the coordinates map
+        if (truckBooking.coordinatesMap[pickupLocation] && truckBooking.coordinatesMap[dropLocation]) {
+            const { lat: lat1, lon: lon1 } = truckBooking.coordinatesMap[pickupLocation];
+            const { lat: lat2, lon: lon2 } = truckBooking.coordinatesMap[dropLocation];
+
+            const distance = truckBooking.calculateDistance(lat1, lon1, lat2, lon2);
+            const fare = truckBooking.calculateFare(distance);
+
+            alert(`Distance: ${distance.toFixed(2)} km\nEstimated Fare: ₹${fare.toFixed(2)}`);
+        } else {
+            alert("Selected locations are not available in the system.");
+        }
+    } else {
+        alert("Please select valid and distinct pickup and drop locations.");
+    }
+}
+
+
+
 
 </script>
 
@@ -591,7 +581,7 @@ export class Home {
         
     </footer>
     
-
+    <script src="LocationService.js"></script>
     <!-- =-=-=-=-=-=-= JQUERY =-=-=-=-=-=-= -->
     <script src="js/jquery.min.js"></script>
     <!-- Bootstrap Core Css  -->
