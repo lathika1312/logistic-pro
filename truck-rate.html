@@ -107,14 +107,21 @@
                     </div>
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="main-navigation">
-                        <ul class="nav navbar-nav">
-                            <li class="dropdown ">
-                                <a href="index.html" data-animations="fadeInUp">Home</a></li>
-                                    <li><a href="about.html">About Company </a> </li>
-                                    <li ><a href="services.html">Services </a> </li>
-                                    <li><a href="contact.html">Contact Us </a> </li>
-                        </ul>
-                        <a  href="truck-rate.html"  class="btn btn-primary pull-right">Truck Rate</a> </div>
+                      <ul class="nav navbar-nav">
+                          <li>
+                              <a href="index.html" data-animations="fadeInUp">Home</a>
+                          </li>
+                          <li><a href="about.html">About Company</a></li>
+                          <li><a href="services.html">Services</a></li>
+                          <li><a href="contact.html">Contact Us</a></li>
+                      </ul>
+                      
+                      <!-- Flexbox container for centered buttons with space between -->
+                      <div class="button-container" style="display: flex; justify-content: right; gap: 20px;">
+                          <a href="truck-rate.html" class="btn btn-primary">Truck Rate</a>
+                          <a href="login.html" class="btn btn-primary">Login / Register</a>
+                      </div>
+                  </div>  
                     <!-- /.navbar-collapse -->
 
                 </div>
@@ -385,22 +392,7 @@ button:hover {
 
 <script>
 
-export class Home {
-  pickupLocation = null; // Include name
-  dropLocation = null; // Include name
-
-  // List of all unique districts in Tamil Nadu
-  districts = [
-    'Ariyalur', 'Chengalpattu', 'Chennai', 'Coimbatore', 'Cuddalore', 'Dharmapuri', 'Dindigul',
-    'Erode', 'Kallakurichi', 'Kanchipuram', 'Kanyakumari', 'Karur', 'Krishnagiri', 'Madurai', 
-    'Mayiladuthurai', 'Nagapattinam', 'Namakkal', 'Nilgiris', 'Perambalur', 'Pudukkottai', 
-    'Ramanathapuram', 'Ranipet', 'Salem', 'Sivagangai', 'Tenkasi', 'Thanjavur', 'Theni', 
-    'Thiruvallur', 'Thiruvarur', 'Thoothukudi', 'Tiruchirappalli', 'Tirunelveli', 'Tirupattur', 
-    'Tiruppur', 'Tiruvannamalai', 'Vellore', 'Viluppuram', 'Virudhunagar'
-  ];
-
-  // Map of districts to their corresponding coordinates
-  coordinatesMap = {
+const districts = {
     'Ariyalur': { lat: 11.1612, lon: 79.2366 },
     'Chengalpattu': { lat: 12.7602, lon: 80.0556 },
     'Chennai': { lat: 13.0827, lon: 80.2707 },
@@ -412,7 +404,7 @@ export class Home {
     'Kallakurichi': { lat: 11.1684, lon: 78.9341 },
     'Kanchipuram': { lat: 12.8374, lon: 79.7056 },
     'Kanyakumari': { lat: 8.0883, lon: 77.5705 },
-    'Karur': { lat: 17.0000, lon: 78.0000 }, // Replace with actual coordinates
+    'Karur': { lat: 10.9601, lon: 78.0766 },
     'Krishnagiri': { lat: 12.5151, lon: 78.2243 },
     'Madurai': { lat: 9.9258, lon: 78.1198 },
     'Mayiladuthurai': { lat: 11.1041, lon: 79.6600 },
@@ -438,58 +430,108 @@ export class Home {
     'Tiruvannamalai': { lat: 12.2252, lon: 79.0674 },
     'Vellore': { lat: 12.9165, lon: 79.1325 },
     'Viluppuram': { lat: 11.9407, lon: 79.4595 },
-    'Virudhunagar': { lat: 9.4765, lon: 77.9741 },
-  };
+    'Virudhunagar': { lat: 9.4765, lon: 77.9741 }
+};
 
-  constructor(router, locationService) { 
-    this.router = router; 
-    this.locationService = locationService; 
+// Haversine formula to calculate distance between two lat/lon points
+function calculateDistance(lat1, lon1, lat2, lon2) {
+  const R = 6371; // Radius of the Earth in kilometers
+  const dLat = degreesToRadians(lat2 - lat1);
+  const dLon = degreesToRadians(lon2 - lon1);
+
+  const a = 
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(degreesToRadians(lat1)) * Math.cos(degreesToRadians(lat2)) *
+    Math.sin(dLon / 2) * Math.sin(dLon / 2);
+
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  return R * c; // Distance in kilometers
+}
+
+function degreesToRadians(degrees) {
+  return degrees * (Math.PI / 180);
+}
+
+// Example usage
+const district1 = districts['Chennai'];
+const district2 = districts['Coimbatore'];
+const distance = calculateDistance(district1.lat, district1.lon, district2.lat, district2.lon);
+console.log(`Distance between Chennai and Coimbatore: ${distance.toFixed(2)} km`);
+
+class LocationService {
+  constructor() {
+    this.pickupLocation = null;
+    this.dropLocation = null;
   }
 
-  checkFare() {
-    if (!this.pickupLocation || !this.dropLocation) {
-      alert('Please select both pickup and drop locations.'); // Simple alert for feedback
-      return; // Exit if validation fails
-    }
-    
-    // Set locations in the LocationService
-    this.locationService.setPickupLocation(this.pickupLocation.lat, this.pickupLocation.lon,this.pickupLocation.name);
-    this.locationService.setDropLocation(this.dropLocation.lat, this.dropLocation.lon,this.dropLocation.name);
-
-    // Navigate to the customer component
-    this.router.navigate(['/customer']);
+  // Set the pickup location with district name
+  setPickupLocation(lat, lon, name) {
+    this.pickupLocation = { lat, lon, name };
   }
 
-  // Method to set pickup location
-  setPickup(lat, lon, name) {
-    this.pickupLocation = { lat, lon, name }; // Include name
+  // Set the drop location with district name
+  setDropLocation(lat, lon, name) {
+    this.dropLocation = { lat, lon, name };
   }
 
-  // Method to set drop location
-  setDrop(lat, lon, name) {
-    this.dropLocation = { lat, lon, name }; // Include name
+  // Get the pickup location's district name
+  getPickupLocationName() {
+    return this.pickupLocation ? this.pickupLocation.name : null;
   }
 
-  // Change event handlers for select elements
-  onPickupChange(selectedDistrict) {
-    console.log('Selected pickup district:', selectedDistrict.target.value);
-    const coordinates = this.coordinatesMap[selectedDistrict.target.value];
-    if (coordinates) {
-      this.setPickup(coordinates.lat, coordinates.lon, selectedDistrict.target.value); // Include name
-    } else {
-      alert('Coordinates not found for selected district');
-    }
+  // Get the drop location's district name
+  getDropLocationName() {
+    return this.dropLocation ? this.dropLocation.name : null;
   }
 
-  onDropChange(selectedDistrict) {
-    const coordinates = this.coordinatesMap[selectedDistrict.target.value];
-    if (coordinates) {
-      this.setDrop(coordinates.lat, coordinates.lon, selectedDistrict.target.value); // Include name
-    } else {
-      alert('Coordinates not found for selected district');
-    }
+  // Calculate distance using Haversine formula
+  haversineDistance(lat1, lon1, lat2, lon2) {
+    const R = 6371; // Earth's radius in km
+    const dLat = (lat2 - lat1) * (Math.PI / 180);
+    const dLon = (lon2 - lon1) * (Math.PI / 180);
+    const a =
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(lat1 * (Math.PI / 180)) * Math.cos(lat2 * (Math.PI / 180)) *
+      Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    return R * c; // Distance in km
+  }
+
+  // Calculate distance between pickup and drop locations
+  calculateDistance() {
+    return new Promise((resolve) => {
+      if (this.pickupLocation && this.dropLocation) {
+        const { lat: lat1, lon: lon1 } = this.pickupLocation;
+        const { lat: lat2, lon: lon2 } = this.dropLocation;
+        const distance = this.haversineDistance(lat1, lon1, lat2, lon2);
+        resolve(parseFloat(distance.toFixed(2))); // Round to two decimal places
+      } else {
+        resolve(0); // Return 0 if locations are not set
+      }
+    });
+  }
+
+  // Calculate fare based on distance
+  calculateFare() {
+    return this.calculateDistance().then(distance => {
+      const fare = distance * 200; // Assuming rate of ₹200 per km
+      return parseFloat(fare.toFixed(2)); // Round fare to two decimal places
+    });
   }
 }
+
+// Usage example
+const locationService = new LocationService();
+locationService.setPickupLocation(13.0827, 80.2707, 'Chennai');
+locationService.setDropLocation(11.0168, 76.9558, 'Coimbatore');
+
+locationService.calculateDistance().then(distance => {
+  console.log('Distance:', distance, 'km');
+});
+
+locationService.calculateFare().then(fare => {
+  console.log('Estimated Fare: ₹', fare);
+});
 
 </script>
 
