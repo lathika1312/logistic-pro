@@ -134,7 +134,6 @@
     <!-- =-=-=-=-=-=-= HEADER END =-=-=-=-=-=-= -->
 
     <section>
-
       <div class="booking-summary-container">
         <!-- Main Body -->
         <div class="booking-container">
@@ -146,25 +145,24 @@
                 <p><strong>Distance:</strong> <span id="distance">15</span> KM</p>
                 <p><strong>Drop Location:</strong> <span id="dropLocation">Location 2</span></p>
             </div>
-        </div>
-        
-        <script>
-            // Retrieve data from localStorage
-            const pickup = localStorage.getItem("pickupLocation");
-            const drop = localStorage.getItem("dropLocation");
-            const distance = localStorage.getItem("distance");
-            const fare = localStorage.getItem("fare");
-            const minFare = localStorage.getItem("minFare");
-            const maxFare = localStorage.getItem("maxFare");
-        
-            // Update the HTML content with the retrieved data
-            document.getElementById("pickupLocation").textContent = pickup || 'Location 1';
-    document.getElementById("dropLocation").textContent = drop || 'Location 2';
-    document.getElementById("distance").textContent = distance || '0';
-    document.getElementById("estimatedFare").textContent = `₹ ${fare || '0'}`;
-    document.getElementById("minFare").textContent = `₹ ${minFare || '0'}`;
-    document.getElementById("maxFare").textContent = `₹ ${maxFare || '0'}`; // Display max fare or default to '₹ 0'
-        </script>
+    
+            <script>
+                // Retrieve data from localStorage
+                const pickup = localStorage.getItem("pickupLocation") || 'Location 1';
+                const drop = localStorage.getItem("dropLocation") || 'Location 2';
+                const distance = localStorage.getItem("distance") || '15'; // default 15 KM if not found
+                const fare = localStorage.getItem("fare") || '0'; // default fare if not found
+                const minFare = localStorage.getItem("minFare") || '0';
+                const maxFare = localStorage.getItem("maxFare") || '0';
+            
+                // Update the HTML content with the retrieved data
+                document.getElementById("pickupLocation").textContent = pickup;
+                document.getElementById("dropLocation").textContent = drop;
+                document.getElementById("distance").textContent = distance;
+                document.getElementById("estimatedFare").textContent = `₹ ${fare}`;
+                document.getElementById("minFare").textContent = `₹ ${minFare}`;
+                document.getElementById("maxFare").textContent = `₹ ${maxFare}`;
+            </script>
             
             <div class="truck-selection">
               <h3>Select Truck Type</h3>
@@ -175,7 +173,7 @@
                 <option value="Large Truck">Large Truck</option>
               </select>
             </div>
-      
+    
             <div class="goods-selection" style="margin-top: 20px;">
               <h3>Select Goods Type</h3>
               <select id="goodsType">
@@ -185,7 +183,7 @@
                 <option value="Clothing">Clothing</option>
               </select>
             </div>
-      
+    
             <div class="weight-input" style="margin-top: 20px;">
               <label for="weight">Enter Weight</label>
               <input type="number" id="weight" placeholder="Approx Weight (1 Ton = 1000 KG)" />
@@ -196,12 +194,12 @@
                 <option value="ton">Ton</option>
               </select>
             </div>
-      
+    
             <div class="button-container" style="margin-top: 20px;">
               <button id="nextButton1" class="next-button" onclick="goToStep(2)">Next</button>
             </div>
           </div>
-      
+    
           <!-- Step 2: Mobile Details -->
           <div id="step2" class="step" style="display: none;">
             <form id="mobileForm">
@@ -209,14 +207,14 @@
                 <label for="mobile">Enter Mobile No</label>
                 <input type="text" id="mobile" maxlength="10" placeholder="Mobile number" pattern="[0-9]*" inputmode="numeric" />
               </div>
-      
+    
               <div class="button-container">
                 <button type="button" class="back-button" onclick="goToStep(1)">Back</button>
                 <button type="button" class="next-button" onclick="goToStep(3)">Next</button>
               </div>
             </form>
           </div>
-      
+    
           <!-- Step 3: Customer Details -->
           <div id="step3" class="step" style="display: none;">
             <form id="customerForm">
@@ -228,30 +226,30 @@
                   <option value="business">Business(Industry)</option>
                 </select>
               </div>
-      
+    
               <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" id="name" placeholder="Enter your name" />
               </div>
-      
+    
               <div class="form-group">
                 <label for="email">Email (Optional)</label>
                 <input type="email" id="email" placeholder="Enter your email (optional)" />
               </div>
-      
+    
               <div class="button-container">
                 <button type="button" class="back-button" onclick="goToStep(2)">Back</button>
                 <button type="button" class="next-button" onclick="goToStep(4)">Next</button>
               </div>
             </form>
           </div>
-      
+    
           <!-- Step 4: Booking Summary -->
           <div id="step4" class="step" style="display: none;">
             <div class="header">
               <h2 style="text-align: center;">Your Booking is Almost Done</h2>
             </div>
-      
+    
             <div class="summary-details" style="text-align: center;">
               <div class="detail">
                 <strong>Name</strong>
@@ -266,7 +264,7 @@
                 <p id="summaryGoods">Electronics</p>
               </div>
             </div>
-      
+    
             <div class="truck-info" style="text-align: center;">
               <img src="assets/truck.png" alt="Truck Image" />
               <p id="summaryTruck">Medium Truck (5 TON)</p>
@@ -274,11 +272,9 @@
                 Estimated Fare: ₹ <span id="estimatedFare"></span>
                 <span id="minFareLabel">Min: ₹ <span id="minFare"></span></span> |
                 <span id="maxFareLabel">Max: ₹ <span id="maxFare"></span></span>
-            </p>
-            
-
+              </p>
             </div>
-      
+    
             <div class="actions confirmation-buttons">
               <button class="confirm-button" onclick="confirmBooking()">Confirm Booking</button>
               <button class="request-callback-button" onclick="requestCallback()">Request Callback</button>
@@ -287,9 +283,77 @@
           </div>
         </div>
       </div>
-      
+    </section>   
+    
+    <script>
 
-</section>
+    let currentStep = 1;
+
+function goToStep(step) {
+  // Hide all steps
+  for (let i = 1; i <= 4; i++) {
+    document.getElementById('step' + i).style.display = 'none';
+  }
+
+  // Show the current step
+  document.getElementById('step' + step).style.display = 'block';
+  currentStep = step;
+
+  // Handle specific behavior based on the step
+  if (step === 1) {
+    // Logic for Step 1 (e.g., validating truck selection, goods type, weight)
+  } else if (step === 2) {
+    // Logic for Step 2 (e.g., validating mobile number)
+  } else if (step === 3) {
+    // Logic for Step 3 (e.g., validating customer details)
+  } else if (step === 4) {
+    // Show summary details for Step 4
+    document.getElementById('summaryName').innerText = document.getElementById('name').value;
+    const weight = document.getElementById('weight').value;
+    const weightUnit = document.getElementById('weightUnit').value;
+    document.getElementById('summaryWeight').innerText = `${weight} ${weightUnit}`;
+    document.getElementById('summaryGoods').innerText = document.getElementById('goodsType').value;
+    document.getElementById('summaryTruck').innerText = document.getElementById('truckType').value + " (5 TON)";
+    calculateFare();
+  }
+}
+
+function calculateFare() {
+  const truckType = document.getElementById('truckType').value;
+  const distance = document.getElementById('distance').textContent;
+  const weight = document.getElementById('weight').value;
+  let fare = 0;
+
+  // Sample logic for fare calculation (adjust as needed)
+  if (truckType === "Small Truck") {
+    fare = distance * 10;
+  } else if (truckType === "Medium Truck") {
+    fare = distance * 15;
+  } else if (truckType === "Large Truck") {
+    fare = distance * 20;
+  }
+
+  // Store calculated fare in localStorage
+  localStorage.setItem("fare", fare);
+  localStorage.setItem("minFare", fare * 0.8); // 20% discount
+  localStorage.setItem("maxFare", fare * 1.2); // 20% extra charge
+  
+  // Update fare details in summary
+  document.getElementById('estimatedFare').innerText = fare;
+  document.getElementById('minFare').innerText = fare * 0.8;
+  document.getElementById('maxFare').innerText = fare * 1.2;
+}
+
+function confirmBooking() {
+  alert("Your booking has been confirmed!");
+}
+
+function requestCallback() {
+  alert("We will call you back soon.");
+}
+
+</script>
+
 
 <style>
 
@@ -564,50 +628,6 @@ select {
 
     </style>
 
-    <script>
-
-let currentStep = 1;
-
-function goToStep(step) {
-  // Hide all steps
-  for (let i = 1; i <= 4; i++) {
-    document.getElementById('step' + i).style.display = 'none';
-  }
-
-  // Show the current step
-  document.getElementById('step' + step).style.display = 'block';
-  currentStep = step;
-
-  // Handle specific behavior based on the step
-  if (step === 1) {
-    // You can add logic for Step 1 (like validating selections)
-  } else if (step === 2) {
-    // You can add logic for Step 2 (like validating mobile number)
-  } else if (step === 3) {
-    // You can add logic for Step 3 (like validating customer details)
-  } else if (step === 4) {
-    // Show summary details for Step 4
-    document.getElementById('summaryName').innerText = document.getElementById('name').value;
-    document.getElementById('summaryWeight').innerText = document.getElementById('weight').value + " " + document.getElementById('weightUnit').value;
-    document.getElementById('summaryGoods').innerText = document.getElementById('goodsType').value;
-    document.getElementById('summaryTruck').innerText = document.getElementById('truckType').value + " (5 TON)";
-  }
-}
-
-function confirmBooking() {
-  alert('Booking Confirmed!');
-}
-
-function requestCallback() {
-  alert('Callback Requested!');
-}
-
-// Initialize by showing the first step
-window.onload = function () {
-  goToStep(1);
-};
-
-    </script>
 
 <!-- =-=-=-=-=-=-= FOOTER =-=-=-=-=-=-= -->
 <footer class="footer-area">
