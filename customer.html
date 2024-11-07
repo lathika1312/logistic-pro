@@ -150,7 +150,7 @@
         
             
             <div class="truck-selection">
-              <h3>Select Truck Type</h3>
+              <label>Select Truck Type</label>
               <select id="truckType">
                 <option value="" disabled selected hidden>Select Truck</option>
                 <option value="Small Truck">Small Truck</option>
@@ -160,7 +160,7 @@
             </div>
       
             <div class="goods-selection" style="margin-top: 20px;">
-              <h3>Select Goods Type</h3>
+              <label>Select Goods Type</label>
               <select id="goodsType">
                 <option value="" disabled selected hidden>Select Goods Type</option>
                 <option value="Electronics">Electronics</option>
@@ -330,7 +330,7 @@ document.getElementById("maxFare").textContent = `₹ ${maxFare || '0'}`; // Dis
 }
 
 /* Form and Input Styles */
-.form-group, .truck-selection, .goods-selection, .weight-input {
+.form-group, .truck-selection, .goods-selection, .weight-input{
   margin-bottom: 20px;
   text-align: left;
 }
